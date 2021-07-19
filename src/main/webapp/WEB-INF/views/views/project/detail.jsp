@@ -43,7 +43,7 @@
                     <div class="product__details__text">
                         <h3>${blog.title}</h3>
                         <p>Ngày đăng: ${dateUtil.formatDate(blog.createAt)} - Lượt xem: ${blog.views}</p>
-                        <p>${stringUtil.setStringCompact(blog.detail,500)}</p>
+                        <p>${stringUtil.setStringCompact(blog.detail,1000)}</p>
                     </div>
                 </div>
                 <div class="col-lg-12">

@@ -36,7 +36,7 @@ public class CategoryService implements ICRUDService<Category> {
 
 	@Override
 	public Category findById(int id) {
-		return null;
+		return categoryDAO.findById(id);
 	}
 
 	@Override

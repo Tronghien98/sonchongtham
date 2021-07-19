@@ -183,4 +183,36 @@ public class BlogDAO extends AbstractDAO<Blog> {
 		}, id, catId);
 	}
 
+	// phân trang theo danh mục
+	public List<Blog> getListByCat(int catId, int offset, int rowCount) {
+		String sql = "SELECT * FROM blogs b INNER JOIN categories c ON b.catId = c.id"
+				+ " INNER JOIN users u ON b.userId = u.id WHERE b.catId = ? ORDER BY b.id DESC LIMIT ?,?";
+		return jdbcTemplate.query(sql, new ResultSetExtractor<List<Blog>>() {
+			List<Blog> list = new ArrayList<Blog>();
+
+			@Override
+			public List<Blog> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				while (rs.next()) {
+					list.add(new Blog(rs.getInt("b.id"), rs.getString("title"),
+							new Category(rs.getInt("c.id"), rs.getString("c.name")), rs.getString("detail"),
+							new User(rs.getInt("u.id"), rs.getString("username"), rs.getString("fullname"),
+									rs.getString("avatar")),
+							rs.getString("picture"), rs.getInt("views"), rs.getTimestamp("b.createAt")));
+				}
+				return list;
+			}
+		}, catId, offset, rowCount);
+	}
+
+	public int totalRowByCat(int catId) {
+		try {
+			String sql = "SELECT COUNT(*) FROM blogs b INNER JOIN categories c ON b.catId = c.id"
+					+ " INNER JOIN users u ON b.userId = u.id WHERE b.catId = ?";
+			return jdbcTemplate.queryForObject(sql, Integer.class, catId);
+		} catch (Exception e) {
+			System.out.println("Total row blog: No data");
+		}
+		return 0;
+	}
+
 }
