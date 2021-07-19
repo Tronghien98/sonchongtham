@@ -14,6 +14,11 @@ public class StringUtil {
 		return sb.toString();
 	}
 
+	// xoá khoảng trắng trong chuỗi
+	public static String delSpace(String str) {
+		return str.trim().replaceAll("\\s+", " ");
+	}
+
 	public static String makeSlug(String title) {
 		String slug = Normalizer.normalize(title, Normalizer.Form.NFD);
 		Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");

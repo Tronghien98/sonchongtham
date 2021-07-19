@@ -9,7 +9,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Project</title>
+    <title>Sơn Chống Thấm</title>
     
     <c:url value="/resources/project" var="projectContextPath" scope="application" ></c:url>
 
@@ -28,6 +28,7 @@
 <jsp:useBean id="dateUtil" class="spring.util.DateUtil" scope="application"></jsp:useBean>
 <c:url value="/" var="urlIndex" scope="application"></c:url>
 <c:url value="/tin-tuc" var="urlBlog" scope="application"></c:url>
+<c:url value="/danh-muc" var="urlCat" scope="application"></c:url>
 <c:url value="/chi-tiet" var="urlDetail" scope="application"></c:url>
 <c:url value="/lien-he" var="urlContact" scope="application"></c:url>
 

@@ -1,10 +1,12 @@
 package spring.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import spring.constant.GlobalConstant;
 import spring.constant.URLConstant;
 import spring.constant.ViewNameConstant;
 import spring.model.Blog;
@@ -21,17 +24,25 @@ import spring.model.Category;
 import spring.model.Contact;
 import spring.service.BlogService;
 import spring.service.CategoryService;
+import spring.service.ContactService;
+import spring.util.PageUtil;
 import spring.validate.ContactValidate;
 
 @Controller
 public class ProjectController {
 
 	@Autowired
+	private MessageSource messageSource;
+
+	@Autowired
 	private CategoryService categoryService;
 
 	@Autowired
 	private BlogService blogService;
-	
+
+	@Autowired
+	private ContactService contactService;
+
 	@Autowired
 	private ContactValidate contactValidate;
 
@@ -48,6 +59,51 @@ public class ProjectController {
 		List<Blog> listBlogByViews = blogService.getListByViews();
 		model.addAttribute("listBlogByViews", listBlogByViews);
 		return ViewNameConstant.INDEX;
+	}
+
+	@GetMapping({ URLConstant.URL_BLOG, URLConstant.URL_BLOG_PAGINATION })
+	public String blog(@PathVariable(required = false) Integer page, Model model) {
+		int currentPage = GlobalConstant.DEFAULT_PAGE;
+		if (page != null) {
+			if (page < GlobalConstant.DEFAULT_PAGE) {
+				return "redirect:/" + URLConstant.URL_INDEX;
+			}
+			currentPage = page;
+		}
+		int offset = PageUtil.getOffset(currentPage);
+		int totalRow = blogService.totalRow();
+		int totalPage = PageUtil.getTotalPage(totalRow);
+		List<Blog> listBlog = blogService.getList(offset, GlobalConstant.TOTAL_ROW);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("totalRow", totalRow);
+		model.addAttribute("listBlog", listBlog);
+		return ViewNameConstant.BLOG;
+	}
+
+	@GetMapping({ URLConstant.URL_CAT, URLConstant.URL_CAT_PAGINATION })
+	public String cat(@PathVariable(required = false) Integer page, @PathVariable("id") int catId, Model model) {
+		int currentPage = GlobalConstant.DEFAULT_PAGE;
+		if (page != null) {
+			if (page < GlobalConstant.DEFAULT_PAGE) {
+				return "redirect:/" + URLConstant.URL_INDEX;
+			}
+			currentPage = page;
+		}
+		Category category = categoryService.findById(catId);
+		if (category == null) {
+			return "redirect:/" + URLConstant.URL_INDEX;
+		}
+		int offset = PageUtil.getOffset(currentPage);
+		int totalRow = blogService.totalRowByCat(catId);
+		int totalPage = PageUtil.getTotalPage(totalRow);
+		List<Blog> listBlog = blogService.getListByCat(catId, offset, GlobalConstant.TOTAL_ROW);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("totalRow", totalRow);
+		model.addAttribute("listBlog", listBlog);
+		model.addAttribute("category", category);
+		return ViewNameConstant.CAT;
 	}
 
 	@GetMapping(URLConstant.URL_DETAIL)
@@ -75,7 +131,11 @@ public class ProjectController {
 			model.addAttribute("contact", contact);
 			return ViewNameConstant.CONTACT;
 		}
-		
+		if (contactService.save(contact) > 0) {
+			ra.addFlashAttribute("success", messageSource.getMessage("sendContactSuccess", null, Locale.getDefault()));
+		} else {
+			ra.addFlashAttribute("error", messageSource.getMessage("sendContactError", null, Locale.getDefault()));
+		}
 		return "redirect:/" + URLConstant.URL_CONTACT;
 	}
 

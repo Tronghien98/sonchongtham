@@ -12,7 +12,7 @@
                             <span>Doanh nghiệp</span>
                             <h2>Sơn chống thấm <br />100% Chất lượng</h2>
                             <p>Hỗ trợ khác hàng 24/7</p>
-                            <a href="#" class="primary-btn">Tin tức</a>
+                            <a href="${urlBlog}" class="primary-btn">Tin tức</a>
                         </div>
                     </div>
                 </div>

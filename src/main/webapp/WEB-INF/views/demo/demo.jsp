@@ -9,8 +9,6 @@
 </head>
 <body>
 	<h2>Demo</h2>
-	<c:forEach items="${listCat}" var="cat" >
-		<p>${cat.id} - ${cat.name}</p>
-	</c:forEach>
+	${str}
 </body>
 </html>

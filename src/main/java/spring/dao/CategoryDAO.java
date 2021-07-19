@@ -51,4 +51,15 @@ public class CategoryDAO extends AbstractDAO<Category> {
 		return jdbcTemplate.update(sql, id);
 	}
 
+	@Override
+	public Category findById(int id) {
+		try {
+			String sql = "SELECT * FROM categories WHERE id = ?";
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Category.class), id);
+		} catch (Exception e) {
+			System.out.println("Category by ID " + id + ": No data");
+		}
+		return null;
+	}
+
 }

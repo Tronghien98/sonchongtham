@@ -14,6 +14,14 @@
     <put-attribute name="body" value="/WEB-INF/views/views/project/index.jsp" />
   </definition>
   
+  <definition name="project.blog" extends="template.project" >
+    <put-attribute name="body" value="/WEB-INF/views/views/project/blog.jsp" />
+  </definition>
+  
+  <definition name="project.cat" extends="template.project" >
+    <put-attribute name="body" value="/WEB-INF/views/views/project/cat.jsp" />
+  </definition>
+  
   <definition name="project.detail" extends="template.project" >
     <put-attribute name="body" value="/WEB-INF/views/views/project/detail.jsp" />
   </definition>
