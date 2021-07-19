@@ -15,10 +15,13 @@ public class URLConstant {
 	public static final String URL_ADMIN = "admin";
 	public static final String URL_ADMIN_INDEX = "trang-chu.html";
 	public static final String URL_ADMIN_CAT_INDEX = "danh-muc.html";
+
 	
 	public static final String ERROR = "error";
 	public static final String ERROR_404 = "404";
 	public static final String ERROR_403 = "403";
 	public static final String ERROR_400 = "400";
+	
+
 	
 }
