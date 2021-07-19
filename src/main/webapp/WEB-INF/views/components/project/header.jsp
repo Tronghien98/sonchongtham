@@ -62,7 +62,7 @@
                         <ul>
                         	<c:if test="${not empty listCat}">
                         		<c:forEach items="${listCat}" var="cat">
-                        			<li><a href="#" title="${cat.name}" >${cat.name}</a></li>
+                        			<li><a href="${urlCat}/${stringUtil.makeSlug(cat.name)}/${cat.id}" title="${cat.name}" >${cat.name}</a></li>
                         		</c:forEach>
                             </c:if>                  
                         </ul>

@@ -77,19 +77,41 @@
                     </div>
                 </div>
             </div>
+            <c:if test="${not empty success}">
+	            <div class="row">
+	                <div class="col-lg-12">
+	                    <div class="alert alert-success" role="alert">
+						  	${success}
+						</div>
+	                </div>
+	            </div>
+            </c:if>
+            <c:if test="${not empty error}">
+	            <div class="row">
+	                <div class="col-lg-12">
+	                    <div class="alert alert-danger" role="alert">
+						  	${error}
+						</div>
+	                </div>
+	            </div>
+            </c:if>
             <form action="${urlContact}" method="post">
                 <div class="row">
                     <div class="col-lg-4 col-md-4">
-                        <input type="text" placeholder="Tên" name="name">
+                    	<form:errors path="ct.name" cssStyle="color: red; font-style: italic"></form:errors>
+                        <input type="text" value="${contact.name}" placeholder="Tên" name="name">
                     </div>
                     <div class="col-lg-4 col-md-4">
-                        <input type="text" placeholder="Email" name="email">
+                    	<form:errors path="ct.email" cssStyle="color: red; font-style: italic"></form:errors>
+                        <input type="text" value="${contact.email}" placeholder="Email" name="email">
                     </div>
                     <div class="col-lg-4 col-md-4">
-                        <input type="text" placeholder="Số điện thoại" name="phone">
+                    	<form:errors path="ct.phone" cssStyle="color: red; font-style: italic"></form:errors>
+                        <input type="text" value="${contact.phone}" placeholder="Số điện thoại" name="phone">
                     </div>
                     <div class="col-lg-12 col-md-12">
-                        <textarea placeholder="Lời nhắn" name="content"></textarea>
+                    	<form:errors path="ct.content" cssStyle="color: red; font-style: italic"></form:errors>
+                        <textarea placeholder="Lời nhắn" name="content">${contact.content}</textarea>
                     </div>
                     <div class="col-lg-12 text-center">
                     	<button type="submit" class="site-btn">Gửi</button>

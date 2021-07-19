@@ -2,7 +2,11 @@ eclipse.preferences.version=1
 encoding//src/main/java/spring/constant/GlobalConstant.java=UTF-8
 encoding//src/main/java/spring/dao/BlogDAO.java=UTF-8
 encoding//src/main/java/spring/dao/UserDAO.java=UTF-8
+<<<<<<< HEAD
 encoding//src/main/java/spring/model/Category.java=UTF-8
+=======
+encoding//src/main/java/spring/demo/DemoController.java=UTF-8
+>>>>>>> br1
 encoding//src/main/java/spring/model/User.java=UTF-8
 encoding//src/main/java/spring/util/StringUtil.java=UTF-8
 encoding//src/main/resources/messages/error.properties=UTF-8

@@ -56,13 +56,21 @@ public class BlogService implements ICRUDService<Blog> {
 	public List<Blog> getListNew() {
 		return blogDAO.getListNew();
 	}
-	
+
 	public List<Blog> getListByViews() {
 		return blogDAO.getListByViews();
 	}
-	
+
 	public List<Blog> getListRelate(int id, int catId) {
 		return blogDAO.getListRelate(id, catId);
+	}
+
+	public List<Blog> getListByCat(int catId, int offset, int rowCount) {
+		return blogDAO.getListByCat(catId, offset, rowCount);
+	}
+
+	public int totalRowByCat(int catId) {
+		return blogDAO.totalRowByCat(catId);
 	}
 
 }
