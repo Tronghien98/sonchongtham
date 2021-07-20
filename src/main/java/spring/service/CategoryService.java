@@ -49,8 +49,8 @@ public class CategoryService implements ICRUDService<Category> {
 		return categoryDAO.totalRow();
 	}
 
-	public Category checkCatDuplicateByName(String name) {
-		return categoryDAO.checkCatDuplicateByName(name);
+	public Category findByName(String name) {
+		return categoryDAO.findByName(name);
 	}
 
 }

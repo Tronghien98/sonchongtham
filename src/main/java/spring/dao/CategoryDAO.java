@@ -62,8 +62,8 @@ public class CategoryDAO extends AbstractDAO<Category> {
 		return null;
 	}
 
-	// check category duplicate
-	public Category checkCatDuplicateByName(String name) {
+	// find by name => check category duplicate
+	public Category findByName(String name) {
 		try {
 			String sql = "SELECT * FROM categories WHERE name = ?";
 			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Category.class), name);

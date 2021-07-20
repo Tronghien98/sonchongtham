@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/components/taglib.jsp" %>   
 		  <div class="col-md-10">
-			  <form id="formAddUser1" action="${urlAdminUser}/them-nguoi-dung.html" method="post" enctype="multipart/form-data">
+			  <form id="formUpdateUser1" action="" method="post" enctype="multipart/form-data">
 	  			  <div class="row">
 	  				<div class="col-md-12 panel-info">
 			  			<div class="content-box-header panel-heading">
-		  					<div class="panel-title ">Thêm người dùng</div>
+		  					<div class="panel-title ">Sửa người dùng</div>
 			  			</div>
 			  			<div class="content-box-large box-with-header">
 				  			<div>
@@ -35,7 +35,7 @@
 											<span style="color:red" >${confirmPasswordError}</span>
 											<input type="password" value="" name="confirmPassword" class="form-control" placeholder="Xác nhận mật khẩu">										
 										</div>
-
+										
 										<div class="form-group">
 											<label for="fullname">Tên người dùng</label>
 											<form:errors path="userError.fullname" cssClass="err"/>
@@ -53,10 +53,11 @@
 											<form:errors path="userError.phone" cssClass="err"/>
 											<input type="text" value="${user.phone}" name="phone" class="form-control" placeholder="Nhập số điện thoại">										
 										</div>
-										
+
 										<div class="form-group">
 											<label>Ảnh đại diện</label>
 											<form:errors path="userError.avatar" cssClass="err"/>
+											<p><img width="200px" alt="Avatar" src="${adminContextPath}/images/user.png"></p>
 											<input type="file" name="picture" class="btn btn-default" id="exampleInputFile1" >
 											<p class="help-block"><em>Định dạng: jpg, png, jpeg, gif</em></p>
 										</div>
@@ -66,8 +67,7 @@
 								<hr>
 								<div class="row">
 									<div class="col-sm-12">
-										<input type="submit" value="Thêm" class="btn btn-success" />
-										<input type="reset" value="Nhập lại" class="btn btn-default" />
+										<input type="submit" value="Sửa" class="btn btn-success" />
 									</div>
 								</div>
 							</div>

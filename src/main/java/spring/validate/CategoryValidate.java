@@ -28,7 +28,7 @@ public class CategoryValidate implements Validator {
 	@Override
 	public void validate(Object object, Errors errors) {
 		Category category = (Category) object;
-		if (categoryService.checkCatDuplicateByName(category.getName()) != null) {
+		if (categoryService.findByName(category.getName()) != null) {
 			errors.rejectValue("name", null, messageSource.getMessage("duplicateCategory", null, Locale.getDefault()));
 		}
 	}

@@ -14,17 +14,19 @@ public class FileUtil {
 
 	public static String uploadFile(MultipartFile multipartFile, HttpServletRequest request) {
 		String fileName = renameFile(multipartFile.getOriginalFilename());
-		try {
-			String contextRoot = request.getServletContext().getRealPath(GlobalConstant.EMPTY);
-			String dirUpload = contextRoot + GlobalConstant.DIR_UPLOAD;
-			File file = new File(dirUpload);
-			if (!file.exists()) {
-				file.mkdirs();
+		if (!fileName.equals(GlobalConstant.EMPTY)) {
+			try {
+				String contextRoot = request.getServletContext().getRealPath(GlobalConstant.EMPTY);
+				String dirUpload = contextRoot + GlobalConstant.DIR_UPLOAD;
+				File file = new File(dirUpload);
+				if (!file.exists()) {
+					file.mkdirs();
+				}
+				String filePath = dirUpload + File.separator + fileName;
+				multipartFile.transferTo(new File(filePath));
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
 			}
-			String filePath = dirUpload + File.separator + fileName;
-			multipartFile.transferTo(new File(filePath));
-		} catch (IllegalStateException | IOException e) {
-			e.printStackTrace();
 		}
 		return fileName;
 	}

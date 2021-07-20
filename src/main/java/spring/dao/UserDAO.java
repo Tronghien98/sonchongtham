@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
@@ -87,6 +88,28 @@ public class UserDAO extends AbstractDAO<User> {
 	public int del(int id) {
 		String sql = "DELETE FROM users WHERE id = ?";
 		return jdbcTemplate.update(sql, id);
+	}
+
+	@Override
+	public User findById(int id) {
+		try {
+			String sql = "SELECT * FROM users WHERE id = ?";
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), id);
+		} catch (Exception e) {
+			System.out.println("User by ID " + id + ": No data");
+		}
+		return null;
+	}
+
+	// find by username => check user duplicate
+	public User findByUsername(String username) {
+		try {
+			String sql = "SELECT * FROM users WHERE username = ?";
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), username);
+		} catch (Exception e) {
+			System.out.println("User by username '" + username + "': No data");
+		}
+		return null;
 	}
 
 }

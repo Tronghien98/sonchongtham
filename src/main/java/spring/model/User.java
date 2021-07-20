@@ -1,5 +1,8 @@
 package spring.model;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,14 +14,19 @@ public class User {
 	
 	private int id;
 	
+	@NotBlank
 	private String username;
 	
+	@NotBlank
 	private String fullname;
 	
 	private String password;
 	
+	@NotBlank
+	@Email
 	private String email;
 	
+	@NotBlank
 	private String phone;
 	
 	private String avatar;

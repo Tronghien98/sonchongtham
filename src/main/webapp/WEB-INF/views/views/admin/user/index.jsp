@@ -25,6 +25,21 @@
 
 				<div class="row">
 	  				<div class="panel-body">
+	  					<c:if test="${not empty success}">
+							<div class="alert alert-success" role="alert">
+							    ${success}
+							</div>
+						</c:if>
+	  					<c:if test="${not empty error}">
+							<div class="alert alert-danger" role="alert">
+							    ${error}
+							</div>
+						</c:if>
+	  					<c:if test="${not empty msg}">
+							<div class="alert alert-info" role="alert">
+							    ${msg}
+							</div>
+						</c:if>
 		  				<c:choose>
 							<c:when test="${not empty listUser}">
 			  					<table class="table table-striped table-bordered" id="example">
@@ -58,8 +73,8 @@
 													</c:if>
 												</td>
 												<td class="center text-center">
-													<a href="${urlAdminUser}/sua-danh-muc-${user.id}.html" title="" class="btn btn-primary"><span class="glyphicon glyphicon-pencil "></span> Sửa</a>
-				                                    <a href="${urlAdminUser}/xoa-danh-muc-${user.id}.html" onclick="return confirm('Bạn có chắc muốn xoá người dùng \'${user.username}\' không?')" title="" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
+													<a href="${urlAdminUser}/sua-nguoi-dung-${user.id}.html" title="" class="btn btn-primary"><span class="glyphicon glyphicon-pencil "></span> Sửa</a>
+				                                    <a href="${urlAdminUser}/xoa-nguoi-dung-${user.id}.html" onclick="return confirm('Bạn có chắc muốn xoá người dùng \'${user.username}\' không?')" title="" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
 												</td>
 											</tr>
 										</c:forEach>

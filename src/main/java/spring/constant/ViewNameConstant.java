@@ -19,6 +19,7 @@ public class ViewNameConstant {
 
 	public static final String USER_INDEX = "admin.user.index";
 	public static final String USER_ADD = "admin.user.add";
+	public static final String USER_UPDATE = "admin.user.update";
 
 	public static final String ERROR_404 = "views/error/404";
 	public static final String ERROR_403 = "views/error/403";

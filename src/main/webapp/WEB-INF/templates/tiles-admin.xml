@@ -41,4 +41,8 @@
    <definition name="admin.user.add" extends="admin.template">
    		<put-attribute name="content" value="/WEB-INF/views/views/admin/user/add.jsp" />
    </definition>
+
+   <definition name="admin.user.update" extends="admin.template">
+   		<put-attribute name="content" value="/WEB-INF/views/views/admin/user/update.jsp" />
+   </definition>
 </tiles-definitions>

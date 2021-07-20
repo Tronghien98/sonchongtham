@@ -40,7 +40,7 @@ public class UserService implements ICRUDService<User> {
 
 	@Override
 	public User findById(int id) {
-		return null;
+		return userDAO.findById(id);
 	}
 
 	@Override
@@ -51,6 +51,10 @@ public class UserService implements ICRUDService<User> {
 	@Override
 	public int totalRow() {
 		return userDAO.totalRow();
+	}
+
+	public User findByUsername(String username) {
+		return userDAO.findByUsername(username);
 	}
 
 }
