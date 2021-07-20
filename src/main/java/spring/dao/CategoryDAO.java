@@ -62,4 +62,15 @@ public class CategoryDAO extends AbstractDAO<Category> {
 		return null;
 	}
 
+	// check category duplicate
+	public Category checkCatDuplicateByName(String name) {
+		try {
+			String sql = "SELECT * FROM categories WHERE name = ?";
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Category.class), name);
+		} catch (Exception e) {
+			System.out.println("Category by name '" + name + "': No data");
+		}
+		return null;
+	}
+
 }

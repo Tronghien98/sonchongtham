@@ -19,6 +19,11 @@ public class StringUtil {
 		return str.trim().replaceAll("\\s+", " ");
 	}
 
+	// format phone number
+	public static String beautifulPhone(String phone) {
+		return phone.replaceFirst("(\\d{4})(\\d{3})(\\d+)", "$1.$2.$3");
+	}
+
 	public static String makeSlug(String title) {
 		String slug = Normalizer.normalize(title, Normalizer.Form.NFD);
 		Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");

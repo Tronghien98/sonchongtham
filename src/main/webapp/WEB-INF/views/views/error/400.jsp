@@ -25,8 +25,16 @@
 			</div>
 			<h2>400 - Yêu cầu không hợp lệ</h2>
 			<p>Yêu cầu của bạn không hợp lệ, URL đã gặp vấn đề, 1 trong các tham số trên URL không hợp lệ.</p>
-			<a href="${urlIndex}">Trang chủ</a>
+			<a href="${urlIndex}" style="margin-right: 10px">Trang chủ</a>
+			<a href="javascript:void(0)" onclick="back()">Quay lại</a>
 		</div>
 	</div>
 </body>
+
+<script>
+     function back() {
+         history.back();
+     }
+ </script>
+
 </html>

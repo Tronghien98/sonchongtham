@@ -40,6 +40,30 @@
                 <div class="col-lg-9 col-md-7">
                 	<c:choose>
                 		<c:when test="${not empty listBlog}">
+                			<div class="filter__item">
+		                        <div class="row">
+		                            <div class="col-lg-4 col-md-5">
+		                                <div class="filter__sort">
+		                                    <span>Sắp xếp</span>
+		                                    <select>
+		                                        <option value="0">Mặc định</option>
+		                                        <option value="1">Lượt xem</option>
+		                                    </select>
+		                                </div>
+		                            </div>
+		                            <div class="col-lg-4 col-md-4">
+		                                <div class="filter__found">
+		                                    <h6><span>${totalRow}</span> Bài viết</h6>
+		                                </div>
+		                            </div>
+		                            <div class="col-lg-4 col-md-3">
+		                                <div class="filter__option">
+		                                    <span class="icon_grid-2x2"></span>
+		                                    <!-- <span class="icon_ul"></span> -->
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
 		                    <div class="row">
 	                			<c:forEach items="${listBlog}" var="blog">
 			                        <div class="col-lg-4 col-md-6 col-sm-6">

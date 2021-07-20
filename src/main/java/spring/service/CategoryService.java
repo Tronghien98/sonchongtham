@@ -13,7 +13,7 @@ public class CategoryService implements ICRUDService<Category> {
 
 	@Autowired
 	private CategoryDAO categoryDAO;
-	
+
 	@Override
 	public List<Category> getAll() {
 		return categoryDAO.getAll();
@@ -47,6 +47,10 @@ public class CategoryService implements ICRUDService<Category> {
 	@Override
 	public int totalRow() {
 		return categoryDAO.totalRow();
+	}
+
+	public Category checkCatDuplicateByName(String name) {
+		return categoryDAO.checkCatDuplicateByName(name);
 	}
 
 }

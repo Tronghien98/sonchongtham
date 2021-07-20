@@ -8,4 +8,8 @@ public class GlobalConstant {
 
 	public static final int DEFAULT_PAGE = 1; // trang mặc định (phân trang)
 	
+	public static final String DIR_UPLOAD = "WEB-INF/upload";
+	
+	public static final String[] FILE_EXTENSION = { "jpg", "png", "jpeg", "gif" }; // validate upload file
+	
 }

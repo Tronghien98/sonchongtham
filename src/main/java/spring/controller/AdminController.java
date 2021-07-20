@@ -10,9 +10,10 @@ import spring.constant.ViewNameConstant;
 @Controller
 @RequestMapping(URLConstant.URL_ADMIN)
 public class AdminController {
-	
+
 	@GetMapping(URLConstant.URL_ADMIN_INDEX)
 	public String index() {
 		return ViewNameConstant.ADMIN_INDEX;
 	}
+
 }

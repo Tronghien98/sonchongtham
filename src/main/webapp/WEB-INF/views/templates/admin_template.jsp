@@ -1,12 +1,13 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/components/taglib.jsp" %>
-<c:url value="/resources/admin" var="adminContextPath" scope="application"/>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bootstrap Admin Theme v3</title>
+    <title>Sơn Chống Thấm | Admin</title>
+    
+    <c:url value="/resources/admin" var="adminContextPath" scope="application"/>
+    
     <link rel="shortcut icon" type="image/ico" href="${adminContextPath}/images/icon-180x180.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/">
@@ -16,32 +17,31 @@
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     <link href="${adminContextPath}/css/style.css" rel="stylesheet">
     <link href="${adminContextPath}/css/forms.css" rel="stylesheet">
-	
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
   </head>
+  
+  <jsp:useBean id="stringUtil" class="spring.util.StringUtil" scope="application"></jsp:useBean>
+  <jsp:useBean id="dateUtil" class="spring.util.DateUtil" scope="application"></jsp:useBean>
+  <c:url value="/admin/trang-chu.html" var="urlAdminIndex" scope="application"></c:url>
+  <c:url value="/admin/danh-muc" var="urlAdminCat" scope="application"></c:url>
+  <c:url value="/admin/tin-tuc" var="urlAdminNews" scope="application"></c:url>
+  <c:url value="/admin/nguoi-dung" var="urlAdminUser" scope="application"></c:url>
+  <c:url value="/admin/lien-he" var="urlAdminContact" scope="application"></c:url>
+  
   <body>
   	<tiles:insertAttribute name="header" />
-<!-- /.header -->
+  	
     <div class="page-content">
     	<div class="row">
 		  <div class="col-md-2">
 		  	<tiles:insertAttribute name="leftbar" />
 		  </div>
-			<tiles:insertAttribute name="content" />
-		</div><!-- /.row -->
-    </div><!-- /.page-content -->
+		  <tiles:insertAttribute name="content" />
+		</div>
+    </div>
 
-    <!-- Footer -->
-      <tiles:insertAttribute name="footer" />
+    <tiles:insertAttribute name="footer" />
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="${adminContextPath}/bootstrap/js/bootstrap.min.js"></script>
     <script src="${adminContextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${adminContextPath}/js/jquery.validate.min.js"></script>
@@ -50,4 +50,3 @@
     <script src="${adminContextPath}/js/solution.js"></script>
   </body>
 </html>
-    <!-- /.footer -->

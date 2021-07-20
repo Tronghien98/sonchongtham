@@ -25,8 +25,16 @@
 			</div>
 			<h2>404 - Không tìm thấy trang</h2>
 			<p>Trang bạn đang tìm kiếm có thể đã bị xóa do đổi tên hoặc tạm thời không có sẵn.</p>
-			<a href="${urlIndex}">Trang chủ</a>
+			<a href="${urlIndex}" style="margin-right: 10px">Trang chủ</a>
+			<a href="javascript:void(0)" onclick="back()">Quay lại</a>
 		</div>
 	</div>
 </body>
+
+<script>
+     function back() {
+         history.back();
+     }
+ </script>
+
 </html>

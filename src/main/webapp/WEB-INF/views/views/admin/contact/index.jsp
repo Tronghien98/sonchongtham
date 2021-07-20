@@ -5,14 +5,12 @@
   			<div class="content-box-large">
   				<div class="row">
 	  				<div class="panel-heading">
-	  					<div class="panel-title ">QUẢN LÝ DANH MỤC</div>
+	  					<div class="panel-title ">QUẢN LÝ LIÊN HỆ</div>
 		  			</div>
 				</div>
 				<hr>
 				<div class="row">
-					<div class="col-md-8">
-						<a href="${urlAdminCat}/them-danh-muc.html" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Thêm</a>
-					</div>
+					<div class="col-md-8"></div>
                 	<div class="col-md-4">
                  	 <div class="input-group form">
                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
@@ -25,39 +23,42 @@
 
 				<div class="row">
 	  				<div class="panel-body">
-	  					<c:if test="${not empty success}">
-							<div class="alert alert-success" role="alert">
-							    ${success}
-							</div>
-						</c:if>
-	  					<c:if test="${not empty error}">
-							<div class="alert alert-danger" role="alert">
-							    ${error}
-							</div>
-						</c:if>
-	  					<c:if test="${not empty msg}">
-							<div class="alert alert-info" role="alert">
-							    ${msg}
-							</div>
-						</c:if>
 		  				<c:choose>
-							<c:when test="${not empty listCat}">
+							<c:when test="${not empty listContact}">
 			  					<table class="table table-striped table-bordered" id="example">
 									<thead>
 										<tr>
 											<th width="4%">ID</th>
 											<th>Tên</th>
-											<th width="15%">Chức năng</th>
+											<th width="17%">Email</th>
+											<th width="9%">Số điện thoại</th>
+											<th>Lời nhắn</th>
+											<th width="10%">Trạng thái</th>
+											<th width="8%">Ngày gửi</th>
+											<th width="8%">Chức năng</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${listCat}" var="cat">
-											<tr <c:if test='${categoryUpdate == cat.id}'>style="color: red; font-weight: bold"</c:if> class="odd gradeX">
-												<td>${cat.id}</td>
-												<td>${cat.name}</td>
+										<c:forEach items="${listContact}" var="contact">
+											<tr class="odd gradeX">
+												<td>${contact.id}</td>
+												<td>${contact.name}</td>
+												<td>${contact.email}</td>
+												<td align="center">${stringUtil.beautifulPhone(contact.phone)}</td>
+												<td>${contact.content}</td>
+												<td>
+													<c:if test="${contact.status == 0}">
+														<span>Chưa xử lý</span>
+														<a href="javascript:void(0)" title="Cập nhật trạng thái" style="margin-left: 6px"><img alt="Chưa xử lý" src="${adminContextPath}/images/deactive.gif" /></a>
+													</c:if>
+													<c:if test="${contact.status == 1}">
+														<span>Đã liên hệ</span>
+														<a href="javascript:void(0)" title="Cập nhật trạng thái" style="margin-left: 6px"><img alt="Đã liên hệ" src="${adminContextPath}/images/active.gif" /></a>
+													</c:if>
+												</td>
+												<td align="center">${dateUtil.formatDate(contact.createAt)}</td>
 												<td class="center text-center">
-													<a href="${urlAdminCat}/sua-danh-muc-${cat.id}.html" title="" class="btn btn-primary"><span class="glyphicon glyphicon-pencil "></span> Sửa</a>
-				                                    <a href="${urlAdminCat}/xoa-danh-muc-${cat.id}.html" onclick="return confirm('Bạn có chắc muốn xoá danh mục \'${cat.name}\' không?')" title="" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
+				                                    <a href="${urlAdminContact}/xoa-lien-he-${contact.id}.html" onclick="return confirm('Bạn có chắc muốn xoá liên hệ của \'${contact.name}\' không?')" title="" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
 												</td>
 											</tr>
 										</c:forEach>
@@ -72,7 +73,7 @@
 								   	  	<c:set value="${currentPage}" var="pagePrevious"></c:set>
 								      </c:if>
 									  <li <c:if test='${currentPage == 1}'>class="disabled"</c:if>>
-									  	<a href="${urlAdminCat}/trang-${pagePrevious}.html" aria-label="Previous" >
+									  	<a href="${urlAdminContact}/trang-${pagePrevious}.html" aria-label="Previous" >
 									  		<span aria-hidden="true">«</span>
 									  	</a>
 									  </li>
@@ -80,27 +81,27 @@
 								      <c:choose>
 									      <c:when test="${totalPage > 5}">
 									      	  <c:if test="${currentPage > 3 and currentPage < (totalPage - 2)}">
-									      	  	  <li><a href="${urlAdminCat}.html">Đầu</a></li>
+									      	  	  <li><a href="${urlAdminContact}.html">Đầu</a></li>
 											      <c:forEach begin="${currentPage - 2}" end="${currentPage + 2}" var="page">
 											      	  <li <c:if test='${page == currentPage}'> class="active" </c:if> >
-											      	  	  <a href="${urlAdminCat}/trang-${page}.html">${page}</a>
+											      	  	  <a href="${urlAdminContact}/trang-${page}.html">${page}</a>
 											      	  </li>
 											      </c:forEach>
-											      <li><a href="${urlAdminCat}/trang-${totalPage}.html">Cuối</a></li>
+											      <li><a href="${urlAdminContact}/trang-${totalPage}.html">Cuối</a></li>
 										      </c:if>
 									      	  <c:if test="${currentPage <= 3}">
 											      <c:forEach begin="1" end="5" var="page">
 											      	  <li <c:if test='${page == currentPage}'> class="active" </c:if> >
-											      	  	  <a href="${urlAdminCat}/trang-${page}.html">${page}</a>
+											      	  	  <a href="${urlAdminContact}/trang-${page}.html">${page}</a>
 											      	  </li>
 											      </c:forEach>
-											      <li><a href="${urlAdminCat}/trang-${totalPage}.html">Cuối</a></li>
+											      <li><a href="${urlAdminContact}/trang-${totalPage}.html">Cuối</a></li>
 										      </c:if>
 									      	  <c:if test="${currentPage >= (totalPage - 2)}">
-									      	  	  <li><a href="${urlAdminCat}.html">Đầu</a></li>
+									      	  	  <li><a href="${urlAdminContact}.html">Đầu</a></li>
 											      <c:forEach begin="${totalPage - 4}" end="${totalPage}" var="page">
 											      	  <li <c:if test='${page == currentPage}'> class="active" </c:if> >
-											      	  	  <a href="${urlAdminCat}/trang-${page}.html">${page}</a>
+											      	  	  <a href="${urlAdminContact}/trang-${page}.html">${page}</a>
 											      	  </li>
 											      </c:forEach>
 										      </c:if>
@@ -108,7 +109,7 @@
 									      <c:otherwise>
 									      	  <c:forEach begin="1" end="${totalPage}" var="page">
 										      	  <li <c:if test='${page == currentPage}'> class="active" </c:if> >
-										      	  	  <a href="${urlAdminCat}/trang-${page}.html">${page}</a>
+										      	  	  <a href="${urlAdminContact}/trang-${page}.html">${page}</a>
 										      	  </li>
 										      </c:forEach>
 									      </c:otherwise>
@@ -119,7 +120,7 @@
 								      	<c:set value="${currentPage}" var="pageNext"></c:set>
 								      </c:if>
 									  <li <c:if test='${currentPage == totalPage}'>class="disabled"</c:if>>
-									  	<a href="${urlAdminCat}/trang-${pageNext}.html" aria-label="Next">
+									  	<a href="${urlAdminContact}/trang-${pageNext}.html" aria-label="Next">
 									  		<span aria-hidden="true">»</span>
 									  	</a>
 									  </li>
@@ -139,5 +140,5 @@
 		  </div>
 		  
 <script type="text/javascript">
-	document.getElementById("category_management").className = "current";
+	document.getElementById("contact_management").className = "current";
 </script>

@@ -10,8 +10,8 @@ import spring.constant.ViewNameConstant;
 @Controller
 @RequestMapping(URLConstant.URL_ADMIN)
 public class AdminProductController {
-	
-	@GetMapping(URLConstant.URL_ADMIN_PRODUCT_INDEX)
+
+	@GetMapping(URLConstant.URL_ADMIN_NEWS_INDEX)
 	public String index() {
 		return ViewNameConstant.PRODUCT_INDEX;
 	}
