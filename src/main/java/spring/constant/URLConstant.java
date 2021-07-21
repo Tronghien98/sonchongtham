@@ -5,8 +5,8 @@ public class URLConstant {
 	public static final String URL_EMPTY = "";
 
 	public static final String URL_INDEX = "";
-	public static final String URL_BLOG = "tin-tuc";
-	public static final String URL_BLOG_PAGINATION = "tin-tuc/trang-{page}";
+	public static final String URL_BLOG = "bai-viet";
+	public static final String URL_BLOG_PAGINATION = "bai-viet/trang-{page}";
 	public static final String URL_CAT = "danh-muc/{name}/{id}";
 	public static final String URL_CAT_PAGINATION = "danh-muc/{name}/{id}/trang-{page}";
 	public static final String URL_CONTACT = "lien-he";
@@ -21,7 +21,8 @@ public class URLConstant {
 	public static final String URL_ADMIN_CAT_UPDATE = "danh-muc/sua-danh-muc-{id}.html";
 	public static final String URL_ADMIN_CAT_DELETE = "danh-muc/xoa-danh-muc-{id}.html";
 
-	public static final String URL_ADMIN_NEWS_INDEX = "tin-tuc.html";
+	public static final String URL_ADMIN_BLOG_INDEX = "bai-viet.html";
+	public static final String URL_ADMIN_BLOG_INDEX_PAGINATION = "bai-viet/trang-{page}.html";
 
 	public static final String URL_ADMIN_USER_INDEX = "nguoi-dung.html";
 	public static final String URL_ADMIN_USER_INDEX_PAGINATION = "nguoi-dung/trang-{page}.html";
@@ -34,6 +35,7 @@ public class URLConstant {
 
 	// dùng để redirect
 	public static final String URL_ADMIN_CAT_INDEX_2 = "admin/danh-muc.html";
+	public static final String URL_ADMIN_BLOG_INDEX_2 = "admin/bai-viet.html";
 	public static final String URL_ADMIN_CONTACT_INDEX_2 = "admin/lien-he.html";
 	public static final String URL_ADMIN_USER_INDEX_2 = "admin/nguoi-dung.html";
 

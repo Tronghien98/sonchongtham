@@ -23,7 +23,7 @@
   <jsp:useBean id="dateUtil" class="spring.util.DateUtil" scope="application"></jsp:useBean>
   <c:url value="/admin/trang-chu.html" var="urlAdminIndex" scope="application"></c:url>
   <c:url value="/admin/danh-muc" var="urlAdminCat" scope="application"></c:url>
-  <c:url value="/admin/tin-tuc" var="urlAdminNews" scope="application"></c:url>
+  <c:url value="/admin/bai-viet" var="urlAdminBlog" scope="application"></c:url>
   <c:url value="/admin/nguoi-dung" var="urlAdminUser" scope="application"></c:url>
   <c:url value="/admin/lien-he" var="urlAdminContact" scope="application"></c:url>
   
@@ -48,5 +48,6 @@
     <script src="${adminContextPath}/js/validate.js"></script>
     <script src="${adminContextPath}/js/custom.js"></script>
     <script src="${adminContextPath}/js/solution.js"></script>
+    <script src="${adminContextPath}/ckeditor/ckeditor.js"></script>
   </body>
 </html>
