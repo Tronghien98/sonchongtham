@@ -44,11 +44,7 @@
 		                        <div class="row">
 		                            <div class="col-lg-4 col-md-5">
 		                                <div class="filter__sort">
-		                                    <span>Sắp xếp</span>
-		                                    <select>
-		                                        <option value="0">Mặc định</option>
-		                                        <option value="1">Lượt xem</option>
-		                                    </select>
+		                                    <span>Danh sách bài viết</span>
 		                                </div>
 		                            </div>
 		                            <div class="col-lg-4 col-md-4">

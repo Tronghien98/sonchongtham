@@ -73,4 +73,12 @@ public class BlogService implements ICRUDService<Blog> {
 		return blogDAO.totalRowByCat(catId);
 	}
 
+	public List<Blog> searchByTitle(String title, int offset, int rowCount) {
+		return blogDAO.searchByTitle(title, offset, rowCount);
+	}
+
+	public int totalRowByTitle(String title) {
+		return blogDAO.totalRowByTitle(title);
+	}
+
 }

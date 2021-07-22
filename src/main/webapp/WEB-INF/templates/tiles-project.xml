@@ -29,4 +29,8 @@
   <definition name="project.contact" extends="template.project" >
     <put-attribute name="body" value="/WEB-INF/views/views/project/contact.jsp" />
   </definition>
+
+  <definition name="project.search" extends="template.project" >
+    <put-attribute name="body" value="/WEB-INF/views/views/project/search.jsp" />
+  </definition>
 </tiles-definitions>

@@ -1,6 +1,5 @@
 package spring.service;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ public class ContactService implements ICRUDService<Contact> {
 	@Override
 	public List<Contact> getAll() {
 		return contactDAO.getAll();
-
 	}
 
 	@Override
@@ -42,7 +40,7 @@ public class ContactService implements ICRUDService<Contact> {
 
 	@Override
 	public Contact findById(int id) {
-		return null;
+		return contactDAO.findById(id);
 	}
 
 	@Override
@@ -53,6 +51,14 @@ public class ContactService implements ICRUDService<Contact> {
 	@Override
 	public int totalRow() {
 		return contactDAO.totalRow();
+	}
+
+	public List<Contact> searchByName(String name, int offset, int rowCount) {
+		return contactDAO.searchByName(name, offset, rowCount);
+	}
+
+	public int totalRowByName(String name) {
+		return contactDAO.totalRowByName(name);
 	}
 
 }

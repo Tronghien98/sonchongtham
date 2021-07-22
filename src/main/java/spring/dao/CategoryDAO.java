@@ -73,4 +73,20 @@ public class CategoryDAO extends AbstractDAO<Category> {
 		return null;
 	}
 
+	// search (có phân trang)
+	public List<Category> searchByName(String name, int offset, int rowCount) {
+		String sql = "SELECT * FROM categories WHERE name LIKE ? ORDER BY id DESC LIMIT ?,?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Category.class), "%" + name + "%", offset, rowCount);
+	}
+
+	public int totalRowByName(String name) {
+		try {
+			String sql = "SELECT COUNT(*) FROM categories WHERE name LIKE ?";
+			return jdbcTemplate.queryForObject(sql, Integer.class, "%" + name + "%");
+		} catch (Exception e) {
+			System.out.println("Total row category by name: No data");
+		}
+		return 0;
+	}
+
 }

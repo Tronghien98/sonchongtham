@@ -31,6 +31,7 @@
 <c:url value="/danh-muc" var="urlCat" scope="application"></c:url>
 <c:url value="/chi-tiet" var="urlDetail" scope="application"></c:url>
 <c:url value="/lien-he" var="urlContact" scope="application"></c:url>
+<c:url value="/tim-kiem" var="urlSearch" scope="application"></c:url>
 
 <body>
     <div id="preloder">

@@ -6,10 +6,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Bài viết</h2>
+                        <h2>Kết quả tìm kiếm</h2>
                         <div class="breadcrumb__option">
                             <a href="${urlIndex}">Trang chủ</a>
-                            <span>Bài viết</span>
+                            <span>Kết quả tìm kiếm "${keyword}"</span>
                         </div>
                     </div>
                 </div>
@@ -45,10 +45,6 @@
 		                            <div class="col-lg-4 col-md-5">
 		                                <div class="filter__sort">
 		                                    <span>Danh sách bài viết</span>
-		                                    <!-- <select id="filter-blog">
-		                                        <option value="0">Mặc định</option>
-		                                        <option value="1">Lượt xem</option>
-		                                    </select> -->
 		                                </div>
 		                            </div>
 		                            <div class="col-lg-4 col-md-4">
@@ -81,33 +77,33 @@
 						   	    <c:if test="${currentPage == 1}">
 						   	  		<c:set value="${currentPage}" var="pagePrevious"></c:set>
 						        </c:if>
-							  	<a href="${urlBlog}/trang-${pagePrevious}"><i class="fa fa-long-arrow-left"></i></a>
+							  	<a href="${urlSearch}/${stringUtil.spaceToDash(keyword)}/trang-${pagePrevious}"><i class="fa fa-long-arrow-left"></i></a>
 		                        
 		                        <c:choose>
 							      <c:when test="${totalPage > 5}">
 							      	  <c:if test="${currentPage > 3 and currentPage < (totalPage - 2)}">
-							      	  	  <a href="${urlBlog}">Trang Đầu</a>
+							      	  	  <a href="${urlSearch}/${stringUtil.spaceToDash(keyword)}">Trang Đầu</a>
 									      <c:forEach begin="${currentPage - 2}" end="${currentPage + 2}" var="page">
-									      	  <a href="${urlBlog}/trang-${page}">${page}</a>
+									      	  <a href="${urlSearch}/${stringUtil.spaceToDash(keyword)}/trang-${page}">${page}</a>
 									      </c:forEach>
-									      <a href="${urlBlog}/trang-${totalPage}">Trang Cuối</a>
+									      <a href="${urlSearch}/${stringUtil.spaceToDash(keyword)}/trang-${totalPage}">Trang Cuối</a>
 								      </c:if>
 							      	  <c:if test="${currentPage <= 3}">
 									      <c:forEach begin="1" end="5" var="page">
-								      	  	  <a href="${urlBlog}/trang-${page}">${page}</a>
+								      	  	  <a href="${urlSearch}/${stringUtil.spaceToDash(keyword)}/trang-${page}">${page}</a>
 									      </c:forEach>
-									      <a href="${urlBlog}/trang-${totalPage}">Trang Cuối</a>
+									      <a href="${urlSearch}/${stringUtil.spaceToDash(keyword)}/trang-${totalPage}">Trang Cuối</a>
 								      </c:if>
 							      	  <c:if test="${currentPage >= (totalPage - 2)}">
-							      	  	  <a href="${urlBlog}">Trang Đầu</a>
+							      	  	  <a href="${urlSearch}/${stringUtil.spaceToDash(keyword)}">Trang Đầu</a>
 									      <c:forEach begin="${totalPage - 4}" end="${totalPage}" var="page">
-								      	  	  <a href="${urlBlog}/trang-${page}">${page}</a>
+								      	  	  <a href="${urlSearch}/${stringUtil.spaceToDash(keyword)}/trang-${page}">${page}</a>
 									      </c:forEach>
 								      </c:if>
 							      </c:when>
 							      <c:otherwise>
 							      	  <c:forEach begin="1" end="${totalPage}" var="page">
-							      	  	  <a href="${urlBlog}/trang-${page}">${page}</a>
+							      	  	  <a href="${urlSearch}/${stringUtil.spaceToDash(keyword)}/trang-${page}">${page}</a>
 								      </c:forEach>
 							      </c:otherwise>
 							    </c:choose>
@@ -116,7 +112,7 @@
 						        <c:if test="${currentPage == totalPage}">
 						      		<c:set value="${currentPage}" var="pageNext"></c:set>
 						        </c:if>
-							  	<a href="${urlBlog}/trang-${pageNext}"><i class="fa fa-long-arrow-right"></i></a>
+							  	<a href="${urlSearch}/${stringUtil.spaceToDash(keyword)}/trang-${pageNext}"><i class="fa fa-long-arrow-right"></i></a>
 		                    </div>
 	                    </c:when>
 	                    <c:otherwise>

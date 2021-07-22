@@ -71,8 +71,8 @@
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
-                                <input type="text" placeholder="Tìm kiếm">
+                            <form action="${urlSearch}" method="get">
+                                <input type="text" value="${keyword}" name="keyword" placeholder="Tìm kiếm">
                                 <button type="submit" class="site-btn">Tìm</button>
                             </form>
                         </div>

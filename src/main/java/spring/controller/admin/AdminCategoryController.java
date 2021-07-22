@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import spring.constant.GlobalConstant;
@@ -23,6 +24,7 @@ import spring.constant.ViewNameConstant;
 import spring.model.Category;
 import spring.service.CategoryService;
 import spring.util.PageUtil;
+import spring.util.StringUtil;
 import spring.validate.CategoryValidate;
 
 @Controller
@@ -38,8 +40,10 @@ public class AdminCategoryController {
 	@Autowired
 	private CategoryValidate categoryValidate;
 
-	@GetMapping({ URLConstant.URL_ADMIN_CAT_INDEX, URLConstant.URL_ADMIN_CAT_INDEX_PAGINATION })
-	public String index(@PathVariable(required = false) Integer page, Model model) {
+	@GetMapping({ URLConstant.URL_ADMIN_CAT_INDEX, URLConstant.URL_ADMIN_CAT_INDEX_PAGINATION,
+			URLConstant.URL_ADMIN_CAT_SEARCH, URLConstant.URL_ADMIN_CAT_SEARCH_PAGINATION })
+	public String index(@PathVariable(required = false) Integer page, @RequestParam(required = false) String keyword,
+			@PathVariable(required = false) String keywordUrl, Model model, RedirectAttributes ra) {
 		int currentPage = GlobalConstant.DEFAULT_PAGE;
 		if (page != null) {
 			if (page < GlobalConstant.DEFAULT_PAGE) {
@@ -51,6 +55,19 @@ public class AdminCategoryController {
 		int totalRow = categoryService.totalRow();
 		int totalPage = PageUtil.getTotalPage(totalRow);
 		List<Category> listCat = categoryService.getList(offset, GlobalConstant.TOTAL_ROW);
+		if (keywordUrl != null) {
+			keyword = StringUtil.dashToSpace(keywordUrl);
+		}
+		if (keyword != null) {
+			if (keyword.equals(GlobalConstant.EMPTY)) {
+				ra.addFlashAttribute("error", messageSource.getMessage("searchError", null, Locale.getDefault()));
+				return "redirect:/" + URLConstant.URL_ADMIN_CAT_INDEX_2;
+			}
+			model.addAttribute("keyword", keyword);
+			totalRow = categoryService.totalRowByName(keyword);
+			totalPage = PageUtil.getTotalPage(totalRow);
+			listCat = categoryService.searchByName(keyword, offset, GlobalConstant.TOTAL_ROW);
+		}
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("totalRow", totalRow);
@@ -106,7 +123,7 @@ public class AdminCategoryController {
 		model.addAttribute("error", messageSource.getMessage("updateCatError", null, Locale.getDefault()));
 		return ViewNameConstant.CAT_UPDATE;
 	}
-	
+
 	@GetMapping(URLConstant.URL_ADMIN_CAT_DELETE)
 	public String delete(@PathVariable int id, RedirectAttributes ra) {
 		Category category = categoryService.findById(id);

@@ -24,6 +24,16 @@ public class StringUtil {
 		return phone.replaceFirst("(\\d{4})(\\d{3})(\\d+)", "$1.$2.$3");
 	}
 
+	// thay thế ký tự khoảng trắng thành ký tự "-"
+	public static String spaceToDash(String str) {
+		return str.replaceAll("\\s", "-");
+	}
+
+	// thay thế ký tự "-" thành ký tự khoảng trắng
+	public static String dashToSpace(String str) {
+		return str.replaceAll("-", " ");
+	}
+
 	public static String makeSlug(String title) {
 		String slug = Normalizer.normalize(title, Normalizer.Form.NFD);
 		Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");

@@ -14,12 +14,14 @@
 						<a href="${urlAdminCat}/them-danh-muc.html" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Thêm</a>
 					</div>
                 	<div class="col-md-4">
-                 	 <div class="input-group form">
-                       <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                       <span class="input-group-btn">
-                         <button class="btn btn-primary" type="button">Tìm kiếm</button>
-                       </span>
-                  	 </div>
+                		<form action="${urlAdminCat}.html" method="get">
+		                 	<div class="input-group form">
+		                       <input type="text" name="keyword" value="${keyword}" class="form-control" placeholder="Tên danh mục">
+		                       <span class="input-group-btn">
+		                         <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+		                       </span>
+		                  	</div>
+                  		</form>
                   	</div>
 				</div>
 
@@ -72,7 +74,7 @@
 								   	  	<c:set value="${currentPage}" var="pagePrevious"></c:set>
 								      </c:if>
 									  <li <c:if test='${currentPage == 1}'>class="disabled"</c:if>>
-									  	<a href="${urlAdminCat}/trang-${pagePrevious}.html" aria-label="Previous" >
+									  	<a href="${urlAdminCat}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>/trang-${pagePrevious}.html" aria-label="Previous" >
 									  		<span aria-hidden="true">«</span>
 									  	</a>
 									  </li>
@@ -80,27 +82,27 @@
 								      <c:choose>
 									      <c:when test="${totalPage > 5}">
 									      	  <c:if test="${currentPage > 3 and currentPage < (totalPage - 2)}">
-									      	  	  <li><a href="${urlAdminCat}.html">Đầu</a></li>
+									      	  	  <li><a href="${urlAdminCat}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>.html">Đầu</a></li>
 											      <c:forEach begin="${currentPage - 2}" end="${currentPage + 2}" var="page">
 											      	  <li <c:if test='${page == currentPage}'> class="active" </c:if> >
-											      	  	  <a href="${urlAdminCat}/trang-${page}.html">${page}</a>
+											      	  	  <a href="${urlAdminCat}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>/trang-${page}.html">${page}</a>
 											      	  </li>
 											      </c:forEach>
-											      <li><a href="${urlAdminCat}/trang-${totalPage}.html">Cuối</a></li>
+											      <li><a href="${urlAdminCat}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>/trang-${totalPage}.html">Cuối</a></li>
 										      </c:if>
 									      	  <c:if test="${currentPage <= 3}">
 											      <c:forEach begin="1" end="5" var="page">
 											      	  <li <c:if test='${page == currentPage}'> class="active" </c:if> >
-											      	  	  <a href="${urlAdminCat}/trang-${page}.html">${page}</a>
+											      	  	  <a href="${urlAdminCat}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>/trang-${page}.html">${page}</a>
 											      	  </li>
 											      </c:forEach>
-											      <li><a href="${urlAdminCat}/trang-${totalPage}.html">Cuối</a></li>
+											      <li><a href="${urlAdminCat}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>/trang-${totalPage}.html">Cuối</a></li>
 										      </c:if>
 									      	  <c:if test="${currentPage >= (totalPage - 2)}">
-									      	  	  <li><a href="${urlAdminCat}.html">Đầu</a></li>
+									      	  	  <li><a href="${urlAdminCat}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>.html">Đầu</a></li>
 											      <c:forEach begin="${totalPage - 4}" end="${totalPage}" var="page">
 											      	  <li <c:if test='${page == currentPage}'> class="active" </c:if> >
-											      	  	  <a href="${urlAdminCat}/trang-${page}.html">${page}</a>
+											      	  	  <a href="${urlAdminCat}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>/trang-${page}.html">${page}</a>
 											      	  </li>
 											      </c:forEach>
 										      </c:if>
@@ -108,7 +110,7 @@
 									      <c:otherwise>
 									      	  <c:forEach begin="1" end="${totalPage}" var="page">
 										      	  <li <c:if test='${page == currentPage}'> class="active" </c:if> >
-										      	  	  <a href="${urlAdminCat}/trang-${page}.html">${page}</a>
+										      	  	  <a href="${urlAdminCat}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>/trang-${page}.html">${page}</a>
 										      	  </li>
 										      </c:forEach>
 									      </c:otherwise>
@@ -119,7 +121,7 @@
 								      	<c:set value="${currentPage}" var="pageNext"></c:set>
 								      </c:if>
 									  <li <c:if test='${currentPage == totalPage}'>class="disabled"</c:if>>
-									  	<a href="${urlAdminCat}/trang-${pageNext}.html" aria-label="Next">
+									  	<a href="${urlAdminCat}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>/trang-${pageNext}.html" aria-label="Next">
 									  		<span aria-hidden="true">»</span>
 									  	</a>
 									  </li>

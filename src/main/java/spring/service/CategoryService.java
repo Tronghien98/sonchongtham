@@ -53,4 +53,12 @@ public class CategoryService implements ICRUDService<Category> {
 		return categoryDAO.findByName(name);
 	}
 
+	public List<Category> searchByName(String name, int offset, int rowCount) {
+		return categoryDAO.searchByName(name, offset, rowCount);
+	}
+
+	public int totalRowByName(String name) {
+		return categoryDAO.totalRowByName(name);
+	}
+
 }

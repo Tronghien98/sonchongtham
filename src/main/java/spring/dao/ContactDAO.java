@@ -58,4 +58,31 @@ public class ContactDAO extends AbstractDAO<Contact> {
 		return jdbcTemplate.update(sql, id);
 	}
 
+	@Override
+	public Contact findById(int id) {
+		try {
+			String sql = "SELECT * FROM contacts WHERE id = ?";
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Contact.class), id);
+		} catch (Exception e) {
+			System.out.println("Contact by ID " + id + ": No data");
+		}
+		return null;
+	}
+
+	// search (có phân trang)
+	public List<Contact> searchByName(String name, int offset, int rowCount) {
+		String sql = "SELECT * FROM contacts WHERE name LIKE ? ORDER BY id DESC LIMIT ?,?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Contact.class), "%" + name + "%", offset, rowCount);
+	}
+
+	public int totalRowByName(String name) {
+		try {
+			String sql = "SELECT COUNT(*) FROM contacts WHERE name LIKE ?";
+			return jdbcTemplate.queryForObject(sql, Integer.class, "%" + name + "%");
+		} catch (Exception e) {
+			System.out.println("Total row contact by name: No data");
+		}
+		return 0;
+	}
+
 }

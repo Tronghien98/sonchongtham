@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import spring.constant.GlobalConstant;
@@ -26,6 +27,7 @@ import spring.service.BlogService;
 import spring.service.CategoryService;
 import spring.service.ContactService;
 import spring.util.PageUtil;
+import spring.util.StringUtil;
 import spring.validate.ContactValidate;
 
 @Controller
@@ -66,7 +68,7 @@ public class ProjectController {
 		int currentPage = GlobalConstant.DEFAULT_PAGE;
 		if (page != null) {
 			if (page < GlobalConstant.DEFAULT_PAGE) {
-				return "redirect:/" + URLConstant.URL_INDEX;
+				return "redirect:/" + URLConstant.URL_BLOG;
 			}
 			currentPage = page;
 		}
@@ -137,6 +139,35 @@ public class ProjectController {
 			ra.addFlashAttribute("error", messageSource.getMessage("sendContactError", null, Locale.getDefault()));
 		}
 		return "redirect:/" + URLConstant.URL_CONTACT;
+	}
+
+	@GetMapping({ URLConstant.URL_SEARCH, URLConstant.URL_SEARCH_PAGINATION })
+	public String search(@RequestParam(required = false) String keyword,
+			@PathVariable(required = false) String keywordUrl, @PathVariable(required = false) Integer page,
+			Model model) {
+		int currentPage = GlobalConstant.DEFAULT_PAGE;
+		if (page != null) {
+			if (page < GlobalConstant.DEFAULT_PAGE) {
+				return "redirect:/" + URLConstant.URL_BLOG;
+			}
+			currentPage = page;
+		}
+		if (keywordUrl != null) {
+			keyword = StringUtil.dashToSpace(keywordUrl);
+		}
+		if (keyword.equals(GlobalConstant.EMPTY)) {
+			return "redirect:/" + URLConstant.URL_BLOG;
+		}
+		int offset = PageUtil.getOffset(currentPage);
+		int totalRow = blogService.totalRowByTitle(keyword);
+		int totalPage = PageUtil.getTotalPage(totalRow);
+		List<Blog> listBlog = blogService.searchByTitle(keyword, offset, GlobalConstant.TOTAL_ROW);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("totalRow", totalRow);
+		model.addAttribute("listBlog", listBlog);
+		model.addAttribute("keyword", keyword);
+		return ViewNameConstant.SEARCH;
 	}
 
 }

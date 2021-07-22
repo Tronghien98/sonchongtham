@@ -12,11 +12,16 @@ public class URLConstant {
 	public static final String URL_CONTACT = "lien-he";
 	public static final String URL_DETAIL = "chi-tiet/{name}/{id}";
 
+	public static final String URL_SEARCH = "tim-kiem";
+	public static final String URL_SEARCH_PAGINATION = "tim-kiem/{keywordUrl}/trang-{page}";
+
 	public static final String URL_ADMIN = "admin";
 	public static final String URL_ADMIN_INDEX = "trang-chu.html";
 
 	public static final String URL_ADMIN_CAT_INDEX = "danh-muc.html";
 	public static final String URL_ADMIN_CAT_INDEX_PAGINATION = "danh-muc/trang-{page}.html";
+	public static final String URL_ADMIN_CAT_SEARCH = "danh-muc/{keywordUrl}.html";
+	public static final String URL_ADMIN_CAT_SEARCH_PAGINATION = "danh-muc/{keywordUrl}/trang-{page}.html";
 	public static final String URL_ADMIN_CAT_ADD = "danh-muc/them-danh-muc.html";
 	public static final String URL_ADMIN_CAT_UPDATE = "danh-muc/sua-danh-muc-{id}.html";
 	public static final String URL_ADMIN_CAT_DELETE = "danh-muc/xoa-danh-muc-{id}.html";
@@ -31,6 +36,9 @@ public class URLConstant {
 
 	public static final String URL_ADMIN_CONTACT_INDEX = "lien-he.html";
 	public static final String URL_ADMIN_CONTACT_INDEX_PAGINATION = "lien-he/trang-{page}.html";
+	public static final String URL_ADMIN_CONTACT_SEARCH = "lien-he/{keywordUrl}.html";
+	public static final String URL_ADMIN_CONTACT_SEARCH_PAGINATION = "lien-he/{keywordUrl}/trang-{page}.html";
+	public static final String URL_ADMIN_CONTACT_UPDATE_STATUS = "lien-he/cap-nhat-trang-thai";
 
 	// dùng để redirect
 	public static final String URL_ADMIN_CAT_INDEX_2 = "admin/danh-muc.html";

@@ -12,17 +12,24 @@
 				<div class="row">
 					<div class="col-md-8"></div>
                 	<div class="col-md-4">
-                 	 <div class="input-group form">
-                       <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                       <span class="input-group-btn">
-                         <button class="btn btn-primary" type="button">Tìm kiếm</button>
-                       </span>
-                  	 </div>
+                		<form action="${urlAdminContact}.html" method="get">
+		                 	<div class="input-group form">
+		                       <input type="text" name="keyword" value="${keyword}" class="form-control" placeholder="Tên người liên hệ">
+		                       <span class="input-group-btn">
+		                         <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+		                       </span>
+		                  	</div>
+                  	 	</form>
                   	</div>
 				</div>
 
 				<div class="row">
 	  				<div class="panel-body">
+	  					<c:if test="${not empty error}">
+							<div class="alert alert-danger" role="alert">
+							    ${error}
+							</div>
+						</c:if>
 		  				<c:choose>
 							<c:when test="${not empty listContact}">
 			  					<table class="table table-striped table-bordered" id="example">
@@ -48,12 +55,12 @@
 												<td>${contact.content}</td>
 												<td>
 													<c:if test="${contact.status == 0}">
-														<span>Chưa xử lý</span>
-														<a href="javascript:void(0)" title="Cập nhật trạng thái" style="margin-left: 6px"><img alt="Chưa xử lý" src="${adminContextPath}/images/deactive.gif" /></a>
+														<span id="status-desc-${contact.id}">Chưa xử lý</span>
+														<a onclick="updateStatus(${contact.id})" href="javascript:void(0)" title="Cập nhật trạng thái" style="margin-left: 6px"><img id="status-img-${contact.id}" alt="Chưa xử lý" src="${adminContextPath}/images/deactive.gif" /></a>
 													</c:if>
 													<c:if test="${contact.status == 1}">
-														<span>Đã liên hệ</span>
-														<a href="javascript:void(0)" title="Cập nhật trạng thái" style="margin-left: 6px"><img alt="Đã liên hệ" src="${adminContextPath}/images/active.gif" /></a>
+														<span id="status-desc-${contact.id}">Đã liên hệ</span>
+														<a onclick="updateStatus(${contact.id})" href="javascript:void(0)" title="Cập nhật trạng thái" style="margin-left: 6px"><img id="status-img-${contact.id}" alt="Đã liên hệ" src="${adminContextPath}/images/active.gif" /></a>
 													</c:if>
 												</td>
 												<td align="center">${dateUtil.formatDate(contact.createAt)}</td>
@@ -73,7 +80,7 @@
 								   	  	<c:set value="${currentPage}" var="pagePrevious"></c:set>
 								      </c:if>
 									  <li <c:if test='${currentPage == 1}'>class="disabled"</c:if>>
-									  	<a href="${urlAdminContact}/trang-${pagePrevious}.html" aria-label="Previous" >
+									  	<a href="${urlAdminContact}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>/trang-${pagePrevious}.html" aria-label="Previous" >
 									  		<span aria-hidden="true">«</span>
 									  	</a>
 									  </li>
@@ -81,27 +88,27 @@
 								      <c:choose>
 									      <c:when test="${totalPage > 5}">
 									      	  <c:if test="${currentPage > 3 and currentPage < (totalPage - 2)}">
-									      	  	  <li><a href="${urlAdminContact}.html">Đầu</a></li>
+									      	  	  <li><a href="${urlAdminContact}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>.html">Đầu</a></li>
 											      <c:forEach begin="${currentPage - 2}" end="${currentPage + 2}" var="page">
 											      	  <li <c:if test='${page == currentPage}'> class="active" </c:if> >
-											      	  	  <a href="${urlAdminContact}/trang-${page}.html">${page}</a>
+											      	  	  <a href="${urlAdminContact}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>/trang-${page}.html">${page}</a>
 											      	  </li>
 											      </c:forEach>
-											      <li><a href="${urlAdminContact}/trang-${totalPage}.html">Cuối</a></li>
+											      <li><a href="${urlAdminContact}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>/trang-${totalPage}.html">Cuối</a></li>
 										      </c:if>
 									      	  <c:if test="${currentPage <= 3}">
 											      <c:forEach begin="1" end="5" var="page">
 											      	  <li <c:if test='${page == currentPage}'> class="active" </c:if> >
-											      	  	  <a href="${urlAdminContact}/trang-${page}.html">${page}</a>
+											      	  	  <a href="${urlAdminContact}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>/trang-${page}.html">${page}</a>
 											      	  </li>
 											      </c:forEach>
-											      <li><a href="${urlAdminContact}/trang-${totalPage}.html">Cuối</a></li>
+											      <li><a href="${urlAdminContact}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>/trang-${totalPage}.html">Cuối</a></li>
 										      </c:if>
 									      	  <c:if test="${currentPage >= (totalPage - 2)}">
-									      	  	  <li><a href="${urlAdminContact}.html">Đầu</a></li>
+									      	  	  <li><a href="${urlAdminContact}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>.html">Đầu</a></li>
 											      <c:forEach begin="${totalPage - 4}" end="${totalPage}" var="page">
 											      	  <li <c:if test='${page == currentPage}'> class="active" </c:if> >
-											      	  	  <a href="${urlAdminContact}/trang-${page}.html">${page}</a>
+											      	  	  <a href="${urlAdminContact}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>/trang-${page}.html">${page}</a>
 											      	  </li>
 											      </c:forEach>
 										      </c:if>
@@ -109,7 +116,7 @@
 									      <c:otherwise>
 									      	  <c:forEach begin="1" end="${totalPage}" var="page">
 										      	  <li <c:if test='${page == currentPage}'> class="active" </c:if> >
-										      	  	  <a href="${urlAdminContact}/trang-${page}.html">${page}</a>
+										      	  	  <a href="${urlAdminContact}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>/trang-${page}.html">${page}</a>
 										      	  </li>
 										      </c:forEach>
 									      </c:otherwise>
@@ -120,7 +127,7 @@
 								      	<c:set value="${currentPage}" var="pageNext"></c:set>
 								      </c:if>
 									  <li <c:if test='${currentPage == totalPage}'>class="disabled"</c:if>>
-									  	<a href="${urlAdminContact}/trang-${pageNext}.html" aria-label="Next">
+									  	<a href="${urlAdminContact}<c:if test='${not empty keyword}'>/${stringUtil.spaceToDash(keyword)}</c:if>/trang-${pageNext}.html" aria-label="Next">
 									  		<span aria-hidden="true">»</span>
 									  	</a>
 									  </li>
@@ -138,6 +145,28 @@
   				</div>
   			</div>
 		  </div>
+		  
+<script type="text/javascript">
+	function updateStatus(id) {
+		$.ajax({
+			url: '${urlAdminContact}/cap-nhat-trang-thai',
+			type: 'POST',
+			cache: false,
+			dataType: 'json',
+			data: {
+				id: id
+			},
+			success: function(data){
+				$("#status-img-"+id).attr("src", "${adminContextPath}/images/" + data.status);
+				$("#status-desc-"+id).html(data.desc);
+			},
+			error: function (){
+				alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+			}
+		});
+		return false;
+	}
+</script>
 		  
 <script type="text/javascript">
 	document.getElementById("contact_management").className = "current";
