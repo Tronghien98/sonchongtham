@@ -29,6 +29,12 @@
    <definition name="admin.product.index" extends="admin.template">
    		<put-attribute name="content" value="/WEB-INF/views/views/admin/product/index.jsp" />
    </definition>
+   <definition name="admin.product.add" extends="admin.template">
+   		<put-attribute name="content" value="/WEB-INF/views/views/admin/product/add.jsp" />
+   </definition>
+   <definition name="admin.product.update" extends="admin.template">
+   		<put-attribute name="content" value="/WEB-INF/views/views/admin/product/update.jsp" />
+   </definition>
   
    <definition name="admin.contact.index" extends="admin.template">
    		<put-attribute name="content" value="/WEB-INF/views/views/admin/contact/index.jsp" />

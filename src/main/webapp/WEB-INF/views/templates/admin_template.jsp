@@ -15,15 +15,20 @@
     <link href="${adminContextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- styles -->
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    
+    <link href="${adminContextPath}/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="${adminContextPath}/css/style.css" rel="stylesheet">
     <link href="${adminContextPath}/css/forms.css" rel="stylesheet">
+    
+    <script src="${adminContextPath}/ckeditor/ckeditor.js"></script>
+    <script src="${adminContextPath}/ckfinder/ckfinder.js"></script>
   </head>
   
   <jsp:useBean id="stringUtil" class="spring.util.StringUtil" scope="application"></jsp:useBean>
   <jsp:useBean id="dateUtil" class="spring.util.DateUtil" scope="application"></jsp:useBean>
   <c:url value="/admin/trang-chu.html" var="urlAdminIndex" scope="application"></c:url>
   <c:url value="/admin/danh-muc" var="urlAdminCat" scope="application"></c:url>
-  <c:url value="/admin/tin-tuc" var="urlAdminNews" scope="application"></c:url>
+  <c:url value="/admin/bai-viet" var="urlAdminNews" scope="application"></c:url>
   <c:url value="/admin/nguoi-dung" var="urlAdminUser" scope="application"></c:url>
   <c:url value="/admin/lien-he" var="urlAdminContact" scope="application"></c:url>
   
@@ -43,7 +48,9 @@
 
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="${adminContextPath}/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${adminContextPath}/js/bootstrap-select.min.js"></script>
     <script src="${adminContextPath}/js/jquery-3.5.1.min.js"></script>
+    
 	<script src="${adminContextPath}/js/jquery.validate.min.js"></script>
     <script src="${adminContextPath}/js/validate.js"></script>
     <script src="${adminContextPath}/js/custom.js"></script>

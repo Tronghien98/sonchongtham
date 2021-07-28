@@ -12,12 +12,12 @@ import spring.constant.GlobalConstant;
 
 public class FileUtil {
 
-	public static String uploadFile(MultipartFile multipartFile, HttpServletRequest request) {
+	public static String uploadFile(MultipartFile multipartFile, HttpServletRequest request, String folder) {
 		String fileName = renameFile(multipartFile.getOriginalFilename());
 		if (!fileName.equals(GlobalConstant.EMPTY)) {
 			try {
 				String contextRoot = request.getServletContext().getRealPath(GlobalConstant.EMPTY);
-				String dirUpload = contextRoot + GlobalConstant.DIR_UPLOAD;
+				String dirUpload = contextRoot + GlobalConstant.DIR_UPLOAD + File.separator + folder;
 				File file = new File(dirUpload);
 				if (!file.exists()) {
 					file.mkdirs();
@@ -41,11 +41,11 @@ public class FileUtil {
 		return GlobalConstant.EMPTY;
 	}
 
-	public static void delFile(String fileName, HttpServletRequest request) {
+	public static void delFile(String fileName, HttpServletRequest request, String foder) {
 		if (!fileName.equals(GlobalConstant.EMPTY)) {
 			StringBuilder bd = new StringBuilder();
 			bd.append(request.getServletContext().getRealPath(GlobalConstant.EMPTY)).append(GlobalConstant.DIR_UPLOAD)
-					.append(File.separator).append(fileName);
+					.append(File.separator).append(foder).append(File.separator).append(fileName);
 			File file = new File(bd.toString());
 			file.delete();
 		}

@@ -15,6 +15,9 @@ public class ViewNameConstant {
 	public static final String CAT_UPDATE = "admin.cat.update";
 	
 	public static final String PRODUCT_INDEX = "admin.product.index";
+	public static final String PRODUCT_ADD = "admin.product.add";
+	public static final String PRODUCT_UPDATE = "admin.product.update";
+	
 
 	public static final String CONTACT_INDEX = "admin.contact.index";
 
