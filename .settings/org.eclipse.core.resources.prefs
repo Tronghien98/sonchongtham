@@ -3,7 +3,6 @@
 >>>>>>>=br1
 eclipse.preferences.version=1
 encoding//src/main/java/spring/constant/GlobalConstant.java=UTF-8
-encoding//src/main/java/spring/constant/URLConstant.java=UTF-8
 encoding//src/main/java/spring/controller/admin/AdminCategoryController.java=UTF-8
 encoding//src/main/java/spring/controller/admin/AdminContactController.java=UTF-8
 encoding//src/main/java/spring/dao/BlogDAO.java=UTF-8
@@ -17,3 +16,4 @@ encoding//src/main/java/spring/validate/UserValidator.java=UTF-8
 encoding//src/main/resources/messages/error.properties=UTF-8
 encoding//src/main/resources/messages/success.properties=UTF-8
 encoding//src/main/resources/messages/validate.properties=UTF-8
+encoding//src/main/webapp/WEB-INF/views/components/admin/header.jsp=UTF-8

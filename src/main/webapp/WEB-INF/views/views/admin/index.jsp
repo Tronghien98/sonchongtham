@@ -27,7 +27,7 @@
 							</span>
 							<div class="text-box">
 								<p class="main-text">
-									<a class="fs-14" href="${urlAdminNews}.html" title="Quản lý tin tức">Tin tức</a>
+									<a class="fs-14" href="${urlAdminNews}.html" title="Quản lý tin tức">Bài viết</a>
 								</p>
 							</div>
 						</div>

@@ -26,7 +26,13 @@ public class URLConstant {
 	public static final String URL_ADMIN_CAT_UPDATE = "danh-muc/sua-danh-muc-{id}.html";
 	public static final String URL_ADMIN_CAT_DELETE = "danh-muc/xoa-danh-muc-{id}.html";
 
-	public static final String URL_ADMIN_NEWS_INDEX = "tin-tuc.html";
+	public static final String URL_ADMIN_NEWS_INDEX = "bai-viet.html";
+	public static final String URL_ADMIN_NEWS_INDEX_PAGINATION = "bai-viet/trang-{page}.html";
+	public static final String URL_ADMIN_NEWS_SEARCH = "bai-viet/{keywordUrl}.html";
+	public static final String URL_ADMIN_NEWS_SEARCH_PAGINATION = "bai-viet/{keywordUrl}/trang-{page}.html";
+	public static final String URL_ADMIN_NEWS_ADD = "bai-viet/them-bai-viet.html";
+	public static final String URL_ADMIN_NEWS_UPDATE = "bai-viet/sua-bai-viet-{id}.html";
+	public static final String URL_ADMIN_NEWS_DELETE = "bai-viet/xoa-bai-viet-{id}.html";
 
 	public static final String URL_ADMIN_USER_INDEX = "nguoi-dung.html";
 	public static final String URL_ADMIN_USER_INDEX_PAGINATION = "nguoi-dung/trang-{page}.html";
@@ -44,6 +50,7 @@ public class URLConstant {
 	public static final String URL_ADMIN_CAT_INDEX_2 = "admin/danh-muc.html";
 	public static final String URL_ADMIN_CONTACT_INDEX_2 = "admin/lien-he.html";
 	public static final String URL_ADMIN_USER_INDEX_2 = "admin/nguoi-dung.html";
+	public static final String URL_ADMIN_NEWS_INDEX_2 = "admin/bai-viet.html";
 
 	public static final String ERROR = "error";
 	public static final String ERROR_404 = "404";

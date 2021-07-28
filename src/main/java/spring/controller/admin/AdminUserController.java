@@ -79,7 +79,7 @@ public class AdminUserController {
 			model.addAttribute("user", user);
 			return ViewNameConstant.USER_ADD;
 		}
-		String fileName = FileUtil.uploadFile(multipartFile, request);
+		String fileName = FileUtil.uploadFile(multipartFile, request, GlobalConstant.AVATAR);
 		user.setAvatar(fileName);
 		if (userService.save(user) > 0) {
 			ra.addFlashAttribute("success", messageSource.getMessage("addUserSuccess", null, Locale.getDefault()));
@@ -118,11 +118,11 @@ public class AdminUserController {
 			model.addAttribute("user", user);
 			return ViewNameConstant.USER_UPDATE;
 		}
-		String fileName = FileUtil.uploadFile(multipartFile, request);
+		String fileName = FileUtil.uploadFile(multipartFile, request, GlobalConstant.AVATAR);
 		if (fileName.equals(GlobalConstant.EMPTY)) {
 			user.setAvatar(oldUser.getAvatar());
 		} else {
-			FileUtil.delFile(oldUser.getAvatar(), request);
+			FileUtil.delFile(oldUser.getAvatar(), request, GlobalConstant.AVATAR);
 		}
 		if (userService.update(user) > 0) {
 			ra.addFlashAttribute("success", messageSource.getMessage("updateUserSuccess", null, Locale.getDefault()));
@@ -140,7 +140,7 @@ public class AdminUserController {
 			return "redirect:/" + URLConstant.URL_ADMIN_USER_INDEX_2;
 		}
 		if (userService.del(id) > 0) {
-			FileUtil.delFile(user.getAvatar(), request);
+			FileUtil.delFile(user.getAvatar(), request, GlobalConstant.AVATAR);
 			ra.addFlashAttribute("success", messageSource.getMessage("deleteUserSuccess", null, Locale.getDefault()));
 		} else {
 			ra.addFlashAttribute("error", messageSource.getMessage("deleteUserError", null, Locale.getDefault()));
