@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,6 +34,9 @@ public class AdminProfileController {
 	private MessageSource messageSource;
 
 	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	@Autowired
 	private UserService userService;
 
 	@Autowired
@@ -56,6 +60,7 @@ public class AdminProfileController {
 		userValidator.validatePicture(multipartFile.getOriginalFilename(), rs);
 		if (!user.getPassword().equals(GlobalConstant.EMPTY)) {
 			userValidator.validatePassword(user, rs, userLogin, confirmPassword, model);
+			user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		} else {
 			user.setPassword(userLogin.getPassword());
 		}
@@ -72,7 +77,8 @@ public class AdminProfileController {
 			if (!fileName.equals(GlobalConstant.EMPTY)) {
 				FileUtil.delFile(userLogin.getAvatar(), request, GlobalConstant.AVATAR);
 			}
-			ra.addFlashAttribute("success", messageSource.getMessage("updateProfileSuccess", null, Locale.getDefault()));
+			ra.addFlashAttribute("success",
+					messageSource.getMessage("updateProfileSuccess", null, Locale.getDefault()));
 			return "redirect:/" + URLConstant.URL_ADMIN_PROFILE;
 		}
 		model.addAttribute("error", messageSource.getMessage("updateUserError", null, Locale.getDefault()));
