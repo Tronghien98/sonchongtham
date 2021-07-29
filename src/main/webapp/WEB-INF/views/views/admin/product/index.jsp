@@ -17,7 +17,7 @@
                 	<div class="col-md-4">
                 		<form action="${urlAdminNews}.html" method="get">
 		                 	<div class="input-group form">
-		                       <input type="text" name="keyword" value="${keyword}" class="form-control" placeholder="Tên danh mục">
+		                       <input type="text" name="keyword" value="${keyword}" class="form-control" placeholder="Tiêu đề bài viết">
 		                       <span class="input-group-btn">
 		                         <button class="btn btn-primary" type="submit">Tìm kiếm</button>
 		                       </span>
@@ -49,10 +49,11 @@
 									<thead>
 										<tr>
 											<th width="4%">ID</th>
-											<th>Title</th>
+											<th>Tiêu đề</th>
 											<th>Danh mục</th>
-											<th>Picture</th>
-											<th>Views</th>
+											<th>Hình ảnh</th>
+											<th width="8%">Lượt xem</th>
+											<th width="9%">Chi tiết</th>
 											<th width="15%">Chức năng</th>
 										</tr>
 									</thead>
@@ -67,10 +68,12 @@
 														<img alt="" src="${adminContextPath}/upload/picture/${blog.picture}">
 													</c:if>
 												</td>
-												<td>${blog.views}</td>
-												<td>${blog.title}</td>
+												<td align="center">${blog.views}</td>
+												<td align="center">
+													<a href="${urlAdminNews}/chi-tiet-bai-viet-${blog.id}.html" title="" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span> Xem</a>
+												</td>
 												<td class="center text-center">
-													<a href="${urlAdminNews}/sua-bai-viet-${blog.id}.html" title="" class="btn btn-primary"><span class="glyphicon glyphicon-pencil "></span> Sửa</a>
+													<a href="${urlAdminNews}/sua-bai-viet-${blog.id}.html" title="" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Sửa</a>
 				                                    <a href="${urlAdminNews}/xoa-bai-viet-${blog.id}.html" onclick="return confirm('Bạn có chắc muốn xoá bài viết \'${blog.title}\' không?')" title="" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
 												</td>
 											</tr>

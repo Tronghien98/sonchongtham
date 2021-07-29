@@ -3,8 +3,10 @@
 >>>>>>>=br1
 eclipse.preferences.version=1
 encoding//src/main/java/spring/constant/GlobalConstant.java=UTF-8
+encoding//src/main/java/spring/constant/URLConstant.java=UTF-8
 encoding//src/main/java/spring/controller/admin/AdminCategoryController.java=UTF-8
 encoding//src/main/java/spring/controller/admin/AdminContactController.java=UTF-8
+encoding//src/main/java/spring/controller/admin/AdminProfileController.java=UTF-8
 encoding//src/main/java/spring/dao/BlogDAO.java=UTF-8
 encoding//src/main/java/spring/dao/UserDAO.java=UTF-8
 encoding//src/main/java/spring/demo/DemoController.java=UTF-8

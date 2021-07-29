@@ -95,7 +95,7 @@
 	                </div>
 	            </div>
             </c:if>
-            <form action="${urlContact}" method="post">
+            <form id="formContact" action="${urlContact}" method="post">
                 <div class="row">
                     <div class="col-lg-4 col-md-4">
                     	<form:errors path="ct.name" cssStyle="color: red; font-style: italic"></form:errors>

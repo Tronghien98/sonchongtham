@@ -67,28 +67,6 @@ public class AdminUserController {
 		return ViewNameConstant.USER_ADD;
 	}
 
-	@PostMapping(URLConstant.URL_ADMIN_USER_ADD)
-	public String add(@Valid @ModelAttribute("userError") User user, BindingResult rs,
-			@RequestParam("picture") MultipartFile multipartFile, @RequestParam String confirmPassword, Model model,
-			RedirectAttributes ra, HttpServletRequest request) {
-		userValidator.validateUsername(user, rs, null);
-		userValidator.validatePassword(user, rs, null, confirmPassword, model);
-		userValidator.validatePhone(user, rs);
-		userValidator.validatePicture(multipartFile.getOriginalFilename(), rs);
-		if (rs.hasErrors()) {
-			model.addAttribute("user", user);
-			return ViewNameConstant.USER_ADD;
-		}
-		String fileName = FileUtil.uploadFile(multipartFile, request, GlobalConstant.AVATAR);
-		user.setAvatar(fileName);
-		if (userService.save(user) > 0) {
-			ra.addFlashAttribute("success", messageSource.getMessage("addUserSuccess", null, Locale.getDefault()));
-			return "redirect:/" + URLConstant.URL_ADMIN_USER_INDEX_2;
-		}
-		model.addAttribute("error", messageSource.getMessage("addUserError", null, Locale.getDefault()));
-		return ViewNameConstant.USER_ADD;
-	}
-
 	@GetMapping(URLConstant.URL_ADMIN_USER_UPDATE)
 	public String update(@PathVariable int id, Model model, RedirectAttributes ra) {
 		User user = userService.findById(id);
@@ -106,7 +84,6 @@ public class AdminUserController {
 			@RequestParam(required = false) String confirmPassword, Model model, RedirectAttributes ra,
 			HttpServletRequest request) {
 		User oldUser = userService.findById(user.getId());
-		userValidator.validateUsername(user, rs, oldUser);
 		userValidator.validatePhone(user, rs);
 		userValidator.validatePicture(multipartFile.getOriginalFilename(), rs);
 		if (!user.getPassword().equals(GlobalConstant.EMPTY)) {
@@ -130,22 +107,6 @@ public class AdminUserController {
 		}
 		model.addAttribute("error", messageSource.getMessage("updateUserError", null, Locale.getDefault()));
 		return ViewNameConstant.USER_UPDATE;
-	}
-
-	@GetMapping(URLConstant.URL_ADMIN_USER_DELETE)
-	public String delete(@PathVariable int id, Model model, RedirectAttributes ra, HttpServletRequest request) {
-		User user = userService.findById(id);
-		if (user == null) {
-			ra.addFlashAttribute("msg", messageSource.getMessage("noDataUser", null, Locale.getDefault()));
-			return "redirect:/" + URLConstant.URL_ADMIN_USER_INDEX_2;
-		}
-		if (userService.del(id) > 0) {
-			FileUtil.delFile(user.getAvatar(), request, GlobalConstant.AVATAR);
-			ra.addFlashAttribute("success", messageSource.getMessage("deleteUserSuccess", null, Locale.getDefault()));
-		} else {
-			ra.addFlashAttribute("error", messageSource.getMessage("deleteUserError", null, Locale.getDefault()));
-		}
-		return "redirect:/" + URLConstant.URL_ADMIN_USER_INDEX_2;
 	}
 
 }

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/components/taglib.jsp" %>   
 		  <div class="col-md-10">
-			  <form id="formAddBlog" action="${urlAdminNews}/them-bai-viet.html" method="post" enctype="multipart/form-data">
+			  <form id="formBlog" action="${urlAdminNews}/them-bai-viet.html" method="post" enctype="multipart/form-data">
 	  			  <div class="row">
 	  				<div class="col-md-12 panel-info">
 			  			<div class="content-box-header panel-heading">
@@ -20,41 +20,34 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label for="name">Tiêu đề bài viết</label>
-											<input type="text" value="${blog.title}" name=title class="form-control" placeholder="Nhập tiêu đề bài viết">										
 											<form:errors path="blog.title" cssClass="err"/>
+											<input type="text" value="${blog.title}" name="title" class="form-control" placeholder="Nhập tiêu đề bài viết">										
 										</div>
 										<div class="form-group">
 											<label for="cat">Danh mục</label>
-											<select name="catId" class="form-control selectpicker"> 
-												<option value="0">--Danh mục--</option>
+											<form:errors path="blog.cat" cssClass="err"/>
+											<select name="cat.id" class="form-control selectpicker">
+												<option value="0">-- Chọn danh mục --</option>
 												<c:if test="${not empty listCat}">
 													<c:forEach items="${listCat}" var="cat">
-														<c:choose>
-															<c:when test="${cat.id == blog.cat.id}">
-																<option value="${cat.id}">${cat.name}</option>
-															</c:when>
-															<c:otherwise>
-																<option value="${cat.id}">${cat.name}</option>
-															</c:otherwise>
-														</c:choose>
+														<option <c:if test='${cat.id == blog.cat.id}'>selected="selected"</c:if> value="${cat.id}">${cat.name}</option>
 													</c:forEach>
 												</c:if>
 											</select>
-											<form:errors path="blog.cat" cssClass="err"/>
-																	
 										</div>
 										<div class="form-group">
 											<label for="file">Hình ảnh</label>
-											<input type="file" name="file">										
 											<form:errors path="blog.picture" cssClass="err"/>
-										</div>
-										<div class="form-group">
-											<label for="detail">Nội dung bài viết</label>
-											<textarea id="detail" name="detail" class="form-control" rows="20" cols="20"  >${blog.detail}</textarea>									
-											<form:errors path="blog.detail" cssClass="err"/>
+											<input type="file" name="file">										
 										</div>
 									</div>
-									<div class="col-sm-6"></div>
+									<div class="col-sm-12">
+										<div class="form-group">
+											<label for="detail">Nội dung bài viết</label>
+											<form:errors path="blog.detail" cssClass="err"/>
+											<textarea id="detail" name="detail" class="form-control" rows="30" >${blog.detail}</textarea>									
+										</div>
+									</div>
 								</div>
 								<hr>
 								<div class="row">

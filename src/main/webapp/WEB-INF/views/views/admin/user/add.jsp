@@ -11,11 +11,6 @@
 			  			<div class="content-box-large box-with-header">
 				  			<div>
 								<div class="row mb-10"></div>
-								<c:if test="${not empty error}">
-									<div class="alert alert-danger" role="alert">
-									    ${error}
-									</div>
-								</c:if>
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">

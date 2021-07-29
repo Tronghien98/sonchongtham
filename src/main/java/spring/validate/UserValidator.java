@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -13,7 +14,6 @@ import org.springframework.validation.Validator;
 import spring.constant.GlobalConstant;
 import spring.constant.RegexConstant;
 import spring.model.User;
-import spring.service.UserService;
 import spring.util.FileUtil;
 
 @Component
@@ -23,7 +23,7 @@ public class UserValidator implements Validator {
 	private MessageSource messageSource;
 
 	@Autowired
-	private UserService userService;
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -35,26 +35,6 @@ public class UserValidator implements Validator {
 
 	}
 
-	public void validateUsername(User user, Errors errors, User oldUser) {
-		if (!user.getUsername().equals(GlobalConstant.EMPTY)) {
-			if (userService.findByUsername(user.getUsername()) != null) {
-				if (oldUser != null) {
-					if (!user.getUsername().equals(oldUser.getUsername())) {
-						errors.rejectValue("username", null,
-								messageSource.getMessage("duplicateUserError", null, Locale.getDefault()));
-					}
-				} else {
-					errors.rejectValue("username", null,
-							messageSource.getMessage("duplicateUserError", null, Locale.getDefault()));
-				}
-			}
-			if (!Pattern.matches(RegexConstant.REGEX_USERNAME, user.getUsername())) {
-				errors.rejectValue("username", null,
-						messageSource.getMessage("formatUsernameError", null, Locale.getDefault()));
-			}
-		}
-	}
-
 	public void validatePassword(User user, Errors errors, User oldUser, String confirmPassword, Model model) {
 		if (!user.getPassword().equals(GlobalConstant.EMPTY)) {
 			if (!Pattern.matches(RegexConstant.REGEX_PASSWORD, user.getPassword())) {
@@ -62,7 +42,7 @@ public class UserValidator implements Validator {
 						messageSource.getMessage("formatPassError", null, Locale.getDefault()));
 			}
 			if (oldUser != null) {
-				if (user.getPassword().equals(oldUser.getPassword())) {
+				if (bCryptPasswordEncoder.matches(user.getPassword(), oldUser.getPassword())) {
 					errors.rejectValue("password", null,
 							messageSource.getMessage("duplicatePasswordError", null, Locale.getDefault()));
 				}
@@ -72,8 +52,6 @@ public class UserValidator implements Validator {
 				model.addAttribute("confirmPasswordError",
 						messageSource.getMessage("confirmPasswordError", null, Locale.getDefault()));
 			}
-		} else {
-			errors.rejectValue("password", null, messageSource.getMessage("emptyPassError", null, Locale.getDefault()));
 		}
 	}
 

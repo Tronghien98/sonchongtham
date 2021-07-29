@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/components/taglib.jsp" %>   
 		  <div class="col-md-10">
-			  <form id="formUpdateCat" action="" method="post"> <!-- action để trống để có thể lấy được id của danh mục -->
+			  <form id="formCat" action="" method="post"> <!-- action để trống để có thể lấy được id của danh mục -->
 	  			  <div class="row">
 	  				<div class="col-md-12 panel-info">
 			  			<div class="content-box-header panel-heading">

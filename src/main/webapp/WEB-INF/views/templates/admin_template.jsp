@@ -7,6 +7,7 @@
     <title>Sơn Chống Thấm | Admin</title>
     
     <c:url value="/resources/admin" var="adminContextPath" scope="application"/>
+    <c:url value="/resources/upload" var="pictureContextPath" scope="application"/>
     
     <link rel="shortcut icon" type="image/ico" href="${adminContextPath}/images/icon-180x180.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +21,8 @@
     <link href="${adminContextPath}/css/style.css" rel="stylesheet">
     <link href="${adminContextPath}/css/forms.css" rel="stylesheet">
     
+    <script src="${adminContextPath}/js/validate.js"></script>
+    
     <script src="${adminContextPath}/ckeditor/ckeditor.js"></script>
     <script src="${adminContextPath}/ckfinder/ckfinder.js"></script>
   </head>
@@ -31,6 +34,8 @@
   <c:url value="/admin/bai-viet" var="urlAdminNews" scope="application"></c:url>
   <c:url value="/admin/nguoi-dung" var="urlAdminUser" scope="application"></c:url>
   <c:url value="/admin/lien-he" var="urlAdminContact" scope="application"></c:url>
+  <c:url value="/admin/tai-khoan.html" var="urlProfile" scope="application"></c:url>
+  <c:url value="/auth/logout" var="urlLogout" scope="application"></c:url>
   
   <body>
   	<tiles:insertAttribute name="header" />

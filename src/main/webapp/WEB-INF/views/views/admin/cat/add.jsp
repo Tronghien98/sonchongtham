@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/components/taglib.jsp" %>   
 		  <div class="col-md-10">
-			  <form id="formAddCat" action="${urlAdminCat}/them-danh-muc.html" method="post">
+			  <form id="formCat" action="${urlAdminCat}/them-danh-muc.html" method="post">
 	  			  <div class="row">
 	  				<div class="col-md-12 panel-info">
 			  			<div class="content-box-header panel-heading">

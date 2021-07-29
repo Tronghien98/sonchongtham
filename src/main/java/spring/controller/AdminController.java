@@ -18,5 +18,5 @@ public class AdminController {
 		session.setAttribute("username", "admin");
 		return ViewNameConstant.ADMIN_INDEX;
 	}
-
+	
 }

@@ -16,7 +16,6 @@ public class Blog {
 	
 	private int id;
 	
-	
 	@NotBlank
 	private String title;
 	

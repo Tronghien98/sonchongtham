@@ -13,6 +13,10 @@
    <definition name="admin.index" extends="admin.template">
    		<put-attribute name="content" value="/WEB-INF/views/views/admin/index.jsp" />
    </definition>
+
+   <definition name="admin.profile" extends="admin.template">
+   		<put-attribute name="content" value="/WEB-INF/views/views/admin/profile.jsp" />
+   </definition>
    
    <definition name="admin.cat.index" extends="admin.template">
    		<put-attribute name="content" value="/WEB-INF/views/views/admin/cat/index.jsp" />
@@ -29,11 +33,17 @@
    <definition name="admin.product.index" extends="admin.template">
    		<put-attribute name="content" value="/WEB-INF/views/views/admin/product/index.jsp" />
    </definition>
+
    <definition name="admin.product.add" extends="admin.template">
    		<put-attribute name="content" value="/WEB-INF/views/views/admin/product/add.jsp" />
    </definition>
+
    <definition name="admin.product.update" extends="admin.template">
    		<put-attribute name="content" value="/WEB-INF/views/views/admin/product/update.jsp" />
+   </definition>
+
+   <definition name="admin.product.detail" extends="admin.template">
+   		<put-attribute name="content" value="/WEB-INF/views/views/admin/product/detail.jsp" />
    </definition>
   
    <definition name="admin.contact.index" extends="admin.template">

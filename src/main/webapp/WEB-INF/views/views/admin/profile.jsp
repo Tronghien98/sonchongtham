@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/components/taglib.jsp" %>   
 		  <div class="col-md-10">
-			  <form id="formUpdateUser1" action="" method="post" enctype="multipart/form-data">
+			  <form id="formProfile" action="${urlProfile}" method="post" enctype="multipart/form-data">
 	  			  <div class="row">
 	  				<div class="col-md-12 panel-info">
 			  			<div class="content-box-header panel-heading">
-		  					<div class="panel-title ">Sửa người dùng</div>
+		  					<div class="panel-title ">Thông tin tài khoản</div>
 			  			</div>
 			  			<div class="content-box-large box-with-header">
 				  			<div>
@@ -16,23 +16,27 @@
 									    ${error}
 									</div>
 								</c:if>
+								<c:if test="${not empty success}">
+									<div class="alert alert-success" role="alert">
+									    ${success}
+									</div>
+								</c:if>
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label for="username">Tên đăng nhập (Username)</label>
-											<form:errors path="userError.username" cssClass="err"/>
-											<input type="text" value="${user.username}" name="username" class="form-control" placeholder="Nhập tên đăng nhập">										
+											<input type="text" value="${user.username}" name="username" class="form-control" readonly="readonly">										
 										</div>
 										
 										<div class="form-group">
 											<label for="password">Mật khẩu (Password)</label>
 											<form:errors path="userError.password" cssClass="err"/>
-											<input type="password" value="" name="password" class="form-control" placeholder="Nhập mật khẩu">										
+											<input type="password" value="" name="password" id="password" class="form-control" placeholder="Mật khẩu">										
 										</div>
 
 										<div class="form-group">
 											<label for="confirmPassword">Xác nhận mật khẩu</label>
-											<span style="color:red" >${confirmPasswordError}</span>
+											<span class="err">${confirmPasswordError}</span>
 											<input type="password" value="" name="confirmPassword" class="form-control" placeholder="Xác nhận mật khẩu">										
 										</div>
 										
@@ -53,22 +57,33 @@
 											<form:errors path="userError.phone" cssClass="err"/>
 											<input type="text" value="${user.phone}" name="phone" class="form-control" placeholder="Nhập số điện thoại">										
 										</div>
-
+									</div>
+									<div class="col-sm-6">
 										<div class="form-group">
 											<label>Ảnh đại diện</label>
-											<form:errors path="userError.avatar" cssClass="err"/>
-											<p><img width="200px" alt="Avatar" src="${adminContextPath}/images/user.png"></p>
+											<p>
+												<c:choose>
+													<c:when test="${not empty user.avatar}">
+														<img class="avatar" alt="Avatar" src="${pictureContextPath}/avatar/${user.avatar}">
+													</c:when>
+													<c:otherwise>
+														<img class="avatar" alt="Avatar" src="${adminContextPath}/images/user.png">
+													</c:otherwise>
+												</c:choose>
+											</p>
+										</div>
+										<div class="form-group">
 											<label>Thay ảnh đại diện</label>
+											<form:errors path="userError.avatar" cssClass="err"/>
 											<input type="file" name="picture" class="btn btn-default" id="exampleInputFile1" >
 											<p class="help-block"><em>Định dạng: jpg, png, jpeg, gif</em></p>
 										</div>
 									</div>
-									<div class="col-sm-6"></div>
 								</div>
 								<hr>
 								<div class="row">
 									<div class="col-sm-12">
-										<input type="submit" value="Sửa" class="btn btn-success" />
+										<input type="submit" value="Cập nhật" class="btn btn-success" />
 									</div>
 								</div>
 							</div>
@@ -79,5 +94,5 @@
 		  </div>
 
 <script type="text/javascript">
-	document.getElementById("user_management").className = "current";
+	document.getElementById("profile_management").className = "current";
 </script>	

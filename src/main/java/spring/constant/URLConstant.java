@@ -32,6 +32,7 @@ public class URLConstant {
 	public static final String URL_ADMIN_NEWS_SEARCH_PAGINATION = "bai-viet/{keywordUrl}/trang-{page}.html";
 	public static final String URL_ADMIN_NEWS_ADD = "bai-viet/them-bai-viet.html";
 	public static final String URL_ADMIN_NEWS_UPDATE = "bai-viet/sua-bai-viet-{id}.html";
+	public static final String URL_ADMIN_NEWS_DETAIL = "bai-viet/chi-tiet-bai-viet-{id}.html";
 	public static final String URL_ADMIN_NEWS_DELETE = "bai-viet/xoa-bai-viet-{id}.html";
 
 	public static final String URL_ADMIN_USER_INDEX = "nguoi-dung.html";
@@ -45,6 +46,10 @@ public class URLConstant {
 	public static final String URL_ADMIN_CONTACT_SEARCH = "lien-he/{keywordUrl}.html";
 	public static final String URL_ADMIN_CONTACT_SEARCH_PAGINATION = "lien-he/{keywordUrl}/trang-{page}.html";
 	public static final String URL_ADMIN_CONTACT_UPDATE_STATUS = "lien-he/cap-nhat-trang-thai";
+
+	public static final String URL_ADMIN_PROFILE = "admin/tai-khoan.html";
+
+	public static final String URL_AUTH_LOGIN = "auth/dang-nhap";
 
 	// dùng để redirect
 	public static final String URL_ADMIN_CAT_INDEX_2 = "admin/danh-muc.html";

@@ -14,7 +14,6 @@ public class User {
 	
 	private int id;
 	
-	@NotBlank
 	private String username;
 	
 	@NotBlank

@@ -15,8 +15,8 @@
 				         </a>
 				         <!-- Sub menu -->
 				         <ul>	  			
-				  			<li><a href="#">Profile</a></li>
-				  			<li><a href="#">Logout</a></li>
+				  			<li id="profile_management"><a href="${urlProfile}">Hồ sơ</a></li>
+				  			<li><a href="${urlLogout}">Đăng xuất</a></li>
 				        </ul>
 				    </li>
 				</ul>

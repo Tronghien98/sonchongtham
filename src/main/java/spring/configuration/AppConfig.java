@@ -54,7 +54,8 @@ public class AppConfig {
 	@Bean(name = "tilesConfigurer")
 	public TilesConfigurer getTilesConfigurer() {
 		TilesConfigurer tilesConfigurer = new TilesConfigurer();
-		tilesConfigurer.setDefinitions("/WEB-INF/templates/tiles-project.xml", "/WEB-INF/templates/tiles-admin.xml");
+		tilesConfigurer.setDefinitions("/WEB-INF/templates/tiles-project.xml", "/WEB-INF/templates/tiles-admin.xml",
+				"/WEB-INF/templates/tiles-auth.xml");
 		return tilesConfigurer;
 	}
 
