@@ -64,7 +64,7 @@
 	                			<c:forEach items="${listBlog}" var="blog">
 			                        <div class="col-lg-4 col-md-6 col-sm-6">
 			                            <div class="product__item">
-			                                <div class="product__item__pic set-bg" data-setbg="${projectContextPath}/img/product/product-1.jpg"></div>
+			                                <div class="product__item__pic set-bg" data-setbg="${urlUpload}/${blog.picture}"></div>
 			                                <div class="product__item__text">
 			                                    <h6><a href="${urlDetail}/${stringUtil.makeSlug(blog.title)}/${blog.id}" title="${blog.title}">${blog.title}</a></h6>
 			                                </div>

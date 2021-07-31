@@ -65,7 +65,7 @@
 												<td>${blog.cat.name}</td>
 												<td>
 													<c:if test="${not empty blog.picture}">
-														<img alt="" src="${adminContextPath}/upload/picture/${blog.picture}">
+														<img alt="" src="${urlUpload}/${blog.picture}" style="max-width: 300px; max-height: 300px">
 													</c:if>
 												</td>
 												<td align="center">${blog.views}</td>

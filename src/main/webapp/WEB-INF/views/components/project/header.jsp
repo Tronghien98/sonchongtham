@@ -31,7 +31,8 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="${urlIndex}"><img src="${projectContextPath}/img/logo.png" alt=""></a>
+                        <a href="${urlIndex}"><img src="${projectContextPath}/img/logo.jpg" alt=""  
+                        style="max-width: 100px; max-height: 50px; margin: 0px 30px 0px 20px; "></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -81,7 +82,7 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+84 123456789</h5>
+                                <h5>0899922239</h5>
                                 <span>Thời gian: Hỗ trợ 24/7</span>
                             </div>
                         </div>

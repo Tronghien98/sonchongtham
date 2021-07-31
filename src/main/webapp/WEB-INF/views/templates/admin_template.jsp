@@ -9,7 +9,7 @@
     <c:url value="/resources/admin" var="adminContextPath" scope="application"/>
     <c:url value="/resources/upload" var="pictureContextPath" scope="application"/>
     
-    <link rel="shortcut icon" type="image/ico" href="${adminContextPath}/images/icon-180x180.png" />
+    <link rel="shortcut icon" type="image/ico" href="${adminContextPath}/images/logo.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/">
     <!-- Bootstrap -->

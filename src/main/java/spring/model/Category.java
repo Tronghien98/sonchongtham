@@ -16,4 +16,5 @@ public class Category {
 	@NotBlank
 	private String name;
 
+	private String image;
 }

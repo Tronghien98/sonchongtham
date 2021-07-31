@@ -117,6 +117,8 @@ public class ProjectController {
 		model.addAttribute("blog", blog);
 		List<Blog> listBlogRelate = blogService.getListRelate(id, blog.getCat().getId());
 		model.addAttribute("listBlogRelate", listBlogRelate);
+		List<Blog> listBlogByViews = blogService.getListByViews();
+		model.addAttribute("listBlogByViews", listBlogByViews);
 		return ViewNameConstant.DETAIL;
 	}
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/components/taglib.jsp" %>
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -9,11 +10,12 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/ico" href="${projectContextPath}/img/logo.jpg" />
     <title>Sơn Chống Thấm</title>
     
     <c:url value="/resources/project" var="projectContextPath" scope="application" ></c:url>
-
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+	<c:url value="/resources/upload/picture" var="urlUpload" scope="application" />
+   
     <link rel="stylesheet" href="${projectContextPath}/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="${projectContextPath}/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="${projectContextPath}/css/elegant-icons.css" type="text/css">
@@ -22,6 +24,9 @@
     <link rel="stylesheet" href="${projectContextPath}/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="${projectContextPath}/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${projectContextPath}/css/style.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <jsp:useBean id="stringUtil" class="spring.util.StringUtil" scope="application"></jsp:useBean>

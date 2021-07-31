@@ -27,7 +27,7 @@ public class BlogDAO extends AbstractDAO<Blog> {
 			public List<Blog> extractData(ResultSet rs) throws SQLException, DataAccessException {
 				while (rs.next()) {
 					list.add(new Blog(rs.getInt("b.id"), rs.getString("title"),
-							new Category(rs.getInt("c.id"), rs.getString("c.name")), rs.getString("detail"),
+							new Category(rs.getInt("c.id"), rs.getString("c.name"),rs.getString("c.image")), rs.getString("detail"),
 							new User(rs.getInt("u.id"), rs.getString("username"), rs.getString("fullname"),
 									rs.getString("avatar")),
 							rs.getString("picture"), rs.getInt("views"), rs.getTimestamp("b.createAt")));
@@ -48,7 +48,7 @@ public class BlogDAO extends AbstractDAO<Blog> {
 			public List<Blog> extractData(ResultSet rs) throws SQLException, DataAccessException {
 				if (rs.next()) {
 					list.add(new Blog(rs.getInt("b.id"), rs.getString("title"),
-							new Category(rs.getInt("c.id"), rs.getString("c.name")), rs.getString("detail"),
+							new Category(rs.getInt("c.id"), rs.getString("c.name"),rs.getString("c.image")), rs.getString("detail"),
 							new User(rs.getInt("u.id"), rs.getString("username"), rs.getString("fullname"),
 									rs.getString("avatar")),
 							rs.getString("picture"), rs.getInt("views"), rs.getTimestamp("b.createAt")));
@@ -73,7 +73,7 @@ public class BlogDAO extends AbstractDAO<Blog> {
 			public List<Blog> extractData(ResultSet rs) throws SQLException, DataAccessException {
 				while (rs.next()) {
 					list.add(new Blog(rs.getInt("b.id"), rs.getString("title"),
-							new Category(rs.getInt("c.id"), rs.getString("c.name")), rs.getString("detail"),
+							new Category(rs.getInt("c.id"), rs.getString("c.name"),rs.getString("c.image")), rs.getString("detail"),
 							new User(rs.getInt("u.id"), rs.getString("username"), rs.getString("fullname"),
 									rs.getString("avatar")),
 							rs.getString("picture"), rs.getInt("views"), rs.getTimestamp("b.createAt")));
@@ -123,7 +123,7 @@ public class BlogDAO extends AbstractDAO<Blog> {
 	// Lấy tin tức mới nhất
 	public List<Blog> getListNew() {
 		String sql = "SELECT * FROM blogs b INNER JOIN categories c ON b.catId = c.id"
-				+ " INNER JOIN users u ON b.userId = u.id ORDER BY b.id DESC LIMIT 8";
+				+ " INNER JOIN users u ON b.userId = u.id ORDER BY b.id DESC LIMIT 12";
 		return jdbcTemplate.query(sql, new ResultSetExtractor<List<Blog>>() {
 			List<Blog> list = new ArrayList<Blog>();
 
@@ -131,7 +131,7 @@ public class BlogDAO extends AbstractDAO<Blog> {
 			public List<Blog> extractData(ResultSet rs) throws SQLException, DataAccessException {
 				while (rs.next()) {
 					list.add(new Blog(rs.getInt("b.id"), rs.getString("title"),
-							new Category(rs.getInt("c.id"), rs.getString("c.name")), rs.getString("detail"),
+							new Category(rs.getInt("c.id"), rs.getString("c.name"), rs.getString("c.image")), rs.getString("detail"),
 							new User(rs.getInt("u.id"), rs.getString("username"), rs.getString("fullname"),
 									rs.getString("avatar")),
 							rs.getString("picture"), rs.getInt("views"), rs.getTimestamp("b.createAt")));
@@ -144,7 +144,7 @@ public class BlogDAO extends AbstractDAO<Blog> {
 	// Lấy tin tức nổi bật (theo lượt xem)
 	public List<Blog> getListByViews() {
 		String sql = "SELECT * FROM blogs b INNER JOIN categories c ON b.catId = c.id"
-				+ " INNER JOIN users u ON b.userId = u.id ORDER BY b.views DESC LIMIT 8";
+				+ " INNER JOIN users u ON b.userId = u.id ORDER BY b.views DESC LIMIT 3";
 		return jdbcTemplate.query(sql, new ResultSetExtractor<List<Blog>>() {
 			List<Blog> list = new ArrayList<Blog>();
 
@@ -152,7 +152,7 @@ public class BlogDAO extends AbstractDAO<Blog> {
 			public List<Blog> extractData(ResultSet rs) throws SQLException, DataAccessException {
 				while (rs.next()) {
 					list.add(new Blog(rs.getInt("b.id"), rs.getString("title"),
-							new Category(rs.getInt("c.id"), rs.getString("c.name")), rs.getString("detail"),
+							new Category(rs.getInt("c.id"), rs.getString("c.name"), rs.getString("c.image")), rs.getString("detail"),
 							new User(rs.getInt("u.id"), rs.getString("username"), rs.getString("fullname"),
 									rs.getString("avatar")),
 							rs.getString("picture"), rs.getInt("views"), rs.getTimestamp("b.createAt")));
@@ -173,7 +173,7 @@ public class BlogDAO extends AbstractDAO<Blog> {
 			public List<Blog> extractData(ResultSet rs) throws SQLException, DataAccessException {
 				while (rs.next()) {
 					list.add(new Blog(rs.getInt("b.id"), rs.getString("title"),
-							new Category(rs.getInt("c.id"), rs.getString("c.name")), rs.getString("detail"),
+							new Category(rs.getInt("c.id"), rs.getString("c.name"), rs.getString("c.image")), rs.getString("detail"),
 							new User(rs.getInt("u.id"), rs.getString("username"), rs.getString("fullname"),
 									rs.getString("avatar")),
 							rs.getString("picture"), rs.getInt("views"), rs.getTimestamp("b.createAt")));
@@ -194,7 +194,7 @@ public class BlogDAO extends AbstractDAO<Blog> {
 			public List<Blog> extractData(ResultSet rs) throws SQLException, DataAccessException {
 				while (rs.next()) {
 					list.add(new Blog(rs.getInt("b.id"), rs.getString("title"),
-							new Category(rs.getInt("c.id"), rs.getString("c.name")), rs.getString("detail"),
+							new Category(rs.getInt("c.id"), rs.getString("c.name"), rs.getString("c.image")), rs.getString("detail"),
 							new User(rs.getInt("u.id"), rs.getString("username"), rs.getString("fullname"),
 									rs.getString("avatar")),
 							rs.getString("picture"), rs.getInt("views"), rs.getTimestamp("b.createAt")));
@@ -226,7 +226,7 @@ public class BlogDAO extends AbstractDAO<Blog> {
 			public List<Blog> extractData(ResultSet rs) throws SQLException, DataAccessException {
 				while (rs.next()) {
 					list.add(new Blog(rs.getInt("b.id"), rs.getString("title"),
-							new Category(rs.getInt("c.id"), rs.getString("c.name")), rs.getString("detail"),
+							new Category(rs.getInt("c.id"), rs.getString("c.name"), rs.getString("c.image")), rs.getString("detail"),
 							new User(rs.getInt("u.id"), rs.getString("username"), rs.getString("fullname"),
 									rs.getString("avatar")),
 							rs.getString("picture"), rs.getInt("views"), rs.getTimestamp("b.createAt")));
